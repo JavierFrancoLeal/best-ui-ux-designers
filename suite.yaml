@@ -1,0 +1,27 @@
+ecosystem_contract_version: "1.0.0"
+suite_id: "ui-ux"
+repo_name: "best-ui-ux-designers"
+director_slug: "design-director"
+judgment_file: "DESIGN.md"
+schema_version: "1.0.0"
+sdlc_stages:
+  primary: ["plan", "design", "test"]
+  secondary: ["build", "deploy", "maintain"]
+execution_modes:
+  architecture_review: "Plan/Design: run full design-director (4 active Barbell designers + adversarial rebuttal + 4 Via Negativa auditors)."
+  fast_pr_gate: "Build/Test/Maintain: run the 4 Via Negativa auditors on UI diffs; escalate to full design-director on hard_veto, new AI surface, or regime change."
+roster_summary:
+  total_experts: 12
+  lindy_anchors: 6
+  convex_frontier: 6
+  auditors: 4
+  regimes: 5
+handoff_targets:
+  - suite_id: "verification-eval"
+    trigger_condition: "Interactive UI or agentic flow ships without independent clean-room behavioral tests, EvalOps error analysis, or deterministic state verification."
+  - suite_id: "systems-harness"
+    trigger_condition: "Frontend latency (>100 ms), state desynchronization, or component duplication stems from backend/state architecture or missing deterministic CI harnesses."
+  - suite_id: "security-governance"
+    trigger_condition: "Agentic checkpoint, permission model, credential boundary, PII handling, or regulatory audit trail crosses into security or compliance governance."
+  - suite_id: "spec-context"
+    trigger_condition: "UI audit reveals contradictory business rules, undefined user tasks, or ambiguous product scope requiring executable specification before redesign."

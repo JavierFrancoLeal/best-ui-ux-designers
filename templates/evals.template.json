@@ -1,0 +1,99 @@
+{
+  "skill_name": "<kebab-case-slug>",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-hard-veto-block",
+      "prompt": "<In-universe UI code or interaction spec triggering at least one hard_veto>",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 40,
+        "triggered_vetos": [
+          "veto-01"
+        ],
+        "failed_filters": [
+          "flt-01"
+        ],
+        "failed_signals": [
+          "sig-01"
+        ]
+      },
+      "assertions": [
+        "Triggers the skill in-universe and emits posture BLOCK with score capped <= 49.",
+        "Cites exact code/DOM/CSS evidence without banned decorative clichés."
+      ]
+    },
+    {
+      "id": "eval-02-conditional-revise",
+      "prompt": "<In-universe UI triggering a conditional_block without hard_veto>",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 80,
+        "triggered_vetos": [
+          "veto-05"
+        ],
+        "failed_filters": [],
+        "failed_signals": [
+          "sig-04"
+        ]
+      },
+      "assertions": [
+        "Emits zero hard_veto triggers, computes exact Phase A score 80, and maps posture to REVISE."
+      ]
+    },
+    {
+      "id": "eval-03-passing-approve",
+      "prompt": "<Compliant in-universe UI satisfying all hard filters, vetos, and signals>",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "APPROVE",
+        "score_cap": 100,
+        "expected_score": 100,
+        "triggered_vetos": [],
+        "failed_filters": [],
+        "failed_signals": []
+      },
+      "assertions": [
+        "Verifies zero vetoes and emits posture APPROVE with score >= 82."
+      ]
+    },
+    {
+      "id": "eval-04-out-of-universe-handoff-1",
+      "prompt": "<Out-of-universe prompt belonging to an excluded regime>",
+      "expected_trigger": false,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Declines scoring, declares OUT_OF_UNIVERSE, and hands off to luke-wroblewski."
+      ]
+    },
+    {
+      "id": "eval-05-out-of-universe-handoff-2",
+      "prompt": "<Second out-of-universe or near-miss prompt>",
+      "expected_trigger": false,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "edward-tufte"
+      },
+      "assertions": [
+        "Declines scoring, declares OUT_OF_UNIVERSE, and hands off to edward-tufte."
+      ]
+    }
+  ]
+}
