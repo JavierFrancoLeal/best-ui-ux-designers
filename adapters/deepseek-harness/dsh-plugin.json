@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "name": "best-ui-ux-designers",
+  "version": "1.0.0",
+  "description": "Portable adversarial UI/UX judgment suite (suite_id: ui-ux) optimized for deterministic text-only code, DOM, CSS, and state-machine audits on DeepSeek V4 Flash/Pro.",
+  "license": "MIT",
+  "suite_manifest": "../../suite.yaml",
+  "execution_profile": {
+    "modality": "text_only_deterministic_linter",
+    "recommended_models": [
+      "deepseek-v4-pro",
+      "deepseek-flash"
+    ],
+    "visual_unverifiable_marker": "UNVERIFIED_TEXT_ONLY",
+    "enforce_predicates": [
+      "observable_indicator",
+      "detection_rule",
+      "deterministic_predicates"
+    ]
+  },
+  "entrypoints": {
+    "director": "../../committee/design-director/SKILL.md",
+    "routing_matrix": "../../committee/design-director/routing-matrix.yaml",
+    "skills_dir": "../../skills",
+    "auditors_dir": "../../committee/auditors",
+    "agents_md": "../../AGENTS.md"
+  },
+  "modes": {
+    "director-only": {
+      "active_skills": [
+        "design-director"
+      ],
+      "lazy_references": [
+        "skills/*",
+        "committee/auditors/*",
+        "committee/design-director/routing-matrix.yaml"
+      ]
+    },
+    "full": {
+      "active_skills": [
+        "design-director",
+        "dieter-rams",
+        "don-norman",
+        "edward-tufte",
+        "jef-raskin",
+        "ben-shneiderman",
+        "susan-kare",
+        "bret-victor",
+        "karri-saarinen",
+        "luke-wroblewski",
+        "rasmus-andersson",
+        "rauno-freiberg",
+        "agentic-flow-architect",
+        "auditor-cognitive-fatigue",
+        "auditor-latency-broken-states",
+        "auditor-physics-accessibility",
+        "auditor-agentic-anti-slop"
+      ]
+    }
+  }
+}

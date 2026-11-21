@@ -1,0 +1,23 @@
+---
+description: "Activates best-ui-ux-designers (suite_id: ui-ux) for adversarial UI/UX audits, Solow Central Dynamo checks, and Via Negativa circuit breakers on frontend source files."
+globs:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.css"
+  - "**/*.vue"
+  - "**/*.svelte"
+alwaysApply: false
+---
+
+# UI/UX Adversarial Judgment Director (`uiux-director`)
+
+Apply `best-ui-ux-designers` (`suite_id: ui-ux`) whenever authoring, refactoring, or reviewing UI components, stylesheets, design tokens, or AI interaction surfaces.
+
+## Dual-Mode Routing
+- **Architecture Mode (`plan` / `design` — new screens, redesigns, AI features, regime shifts):** Load `.cursor/skills/design-director/SKILL.md` and `routing-matrix.yaml`. Execute the 5-step protocol (Regime `R1`–`R5`, Solow `solow_stage`, 4 active Barbell designers or 5 with 15% embedded AI override, dialectical rebuttal, 4 Via Negativa auditors, weighted `Q_total`, and `verdict_envelope` v1.0.0). Never load `OUT_OF_UNIVERSE` designers.
+- **Fast PR Gate Mode (`build` / `test` / `deploy` / `maintain` — incremental UI diffs):** Run the 4 Via Negativa auditors (`auditor-cognitive-fatigue`, `auditor-latency-broken-states`, `auditor-physics-accessibility`, `auditor-agentic-anti-slop` including `aud-slop-04` / `veto-central-dynamo`). Escalate to full `design-director` on any `hard_veto`, new AI trigger, or regime change.
+
+## Hard Guardrails
+- Any `hard_veto` (`V_hard >= 1`) forces `REJECT` regardless of panel score.
+- Enforce immutable Phase A scoring (`Base 100`, `-35` `hard_veto` cap `49`, `-15` `hard_filter`/`conditional_block`, `-10` critical, `-5` high, `-2` medium, floor `0`, `APPROVE >= 82`, `REVISE 60..81`, `BLOCK < 60`).
+- Zero banned decorative clichés (`clean`, `intuitive`, `modern`, `user-centered`, `user-friendly`, `seamless`); cite exact `file:line`, DOM/CSS predicates, and numeric bounds.
