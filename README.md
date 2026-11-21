@@ -1,6 +1,6 @@
 # `best-ui-ux-designers`
 
-[![Validate Repository](https://github.com/best-ui-ux-designers/best-ui-ux-designers/actions/workflows/validate.yml/badge.svg)](.github/workflows/validate.yml)
+[![Validate Repository](https://github.com/JavierFrancoLeal/best-ui-ux-designers/actions/workflows/validate.yml/badge.svg)](https://github.com/JavierFrancoLeal/best-ui-ux-designers/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Ecosystem Contract](https://img.shields.io/badge/ECOSYSTEM__CONTRACT-v1.0.0-black.svg)](suite.yaml)
 
@@ -120,6 +120,9 @@ Each base regime activates **exactly 4 designers** (40%–60% Lindy balance, max
 Use `adapters/install.sh` to mount the suite into any supported workspace or global harness directory without colliding with sibling SDLC suites:
 
 ```bash
+git clone https://github.com/JavierFrancoLeal/best-ui-ux-designers.git
+cd best-ui-ux-designers
+
 # Standalone single-suite installation (registers all 17 skills)
 ./adapters/install.sh --target all --mode full --scope workspace --dest /path/to/your-project
 
