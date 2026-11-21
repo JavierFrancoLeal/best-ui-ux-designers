@@ -4,8 +4,9 @@ description: "Audits and refactors AI-native desktop IDEs and intensive B2B SaaS
 license: MIT
 compatibility: Text-only engineering agents auditing React, TypeScript, Electron, DOM, CSS, or finite state machines; requires reading ./DESIGN.md in the same directory.
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "lindy_anchor"
   primary_regimes: "ai_native_desktop_ide,saas_b2b_intensive"
   author: "best-ui-ux-designers"
@@ -43,7 +44,7 @@ Collect at least one text-verifiable engineering artifact before executing the a
 
 If hardware modality or reversibility is unspecified, state the assumption explicitly before calculating scores.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Execute these six deterministic steps in exact order, cross-referencing IDs in `./DESIGN.md`:
 
@@ -65,7 +66,7 @@ Execute these six deterministic steps in exact order, cross-referencing IDs in `
    * Emit the structured audit scorecard (triggered IDs, KLM Before/After operator equations and exact seconds saved, final numeric score, and verdict).
    * Provide compilable TSX/code remediation eliminating every triggered veto and conditional block.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start every in-universe audit at **`100` points** and apply the immutable Phase A Calibrated Rubric deterministically:
 

@@ -4,8 +4,9 @@ description: "Audits mobile capture, onboarding, and SaaS UI code (TSX/DOM/CSS/A
 license: MIT
 compatibility: "Text-only and multimodal coding agents inspecting HTML, JSX/TSX, CSS, ARIA, and client state machines (no browser or vision required)."
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "lindy_anchor"
   primary_regimes: "mobile_consumer_capture,landing_onboarding_conversion"
   author: "best-ui-ux-designers"
@@ -35,7 +36,7 @@ Collect or inspect the following text-verifiable artifacts before scoring (no br
 2. **Component markup & styling:** HTML, JSX/TSX, CSS/Tailwind rules covering buttons, links, switches, touch targets, color contrast, and visual signifiers.
 3. **Interaction & error state machine:** Touch/drag handlers, `onBlur`/`onChange`/`onSubmit` validation handlers, form reset logic, disabled buttons, ARIA bindings (`aria-invalid`, `aria-errormessage`, `aria-describedby`, `role="status"`), and Undo/confirmation flows.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Inspect the provided HTML, JSX/TSX, CSS, and client state code in four ordered passes:
 
@@ -66,7 +67,7 @@ Evaluate every signal against its exact threshold in `./DESIGN.md`:
 
 *Deduplication rule:* If a defect triggers both a `veto` or `hard_filter` and its corresponding signal, apply the penalty for each distinct rule ID that explicitly fails in the artifact (vetos capture catastrophic antipatterns; filters capture state-machine gates; signals measure systemic compliance).
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Compute the exact score `S` using the **Phase A Calibrated Rubric** (never alter weights or bounds):
 

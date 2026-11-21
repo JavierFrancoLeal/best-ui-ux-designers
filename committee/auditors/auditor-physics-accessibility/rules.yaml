@@ -54,7 +54,7 @@ rules:
     veto_id: "veto-non-compositor-motion-jank"
     name: "compositor_only_motion_blur_and_duration_ceiling"
     category: "interaction_physics"
-    severity: "hard_veto"
+    severity: "conditional_block"
     core_invariant: "Interactive transitions must run exclusively on GPU compositor properties (transform, opacity), prohibit transition-all and layout/paint property animation, cap dynamic blur at <= 20 px, and cap interactive durations at <= 300 ms."
     target_antipattern: "CSS transition: all / Tailwind transition-all, animating height/width/top/left/box-shadow, mutating inherited CSS custom properties on draggable containers (>10 children), dynamic backdrop-filter: blur(>20px), or >300 ms interactive reveals."
     detection_rule: "Scan CSS/Tailwind/TSX for transition: all, transition-all, animated height|width|top|left|box-shadow, inherited --* drag writes on large containers, blur(>20px), or interactive duration > 300 ms; FAIL if any forbidden pattern is found."

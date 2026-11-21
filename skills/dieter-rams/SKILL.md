@@ -4,8 +4,9 @@ description: Audits B2B SaaS workflows and conversion landing pages for Dieter R
 license: MIT
 compatibility: Text-only coding and UI review agents auditing HTML, JSX/TSX, CSS, Tailwind, or design-token repositories (agentskills.io v1.0).
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "lindy_anchor"
   primary_regimes: "saas_b2b_intensive,landing_onboarding_conversion"
   author: "best-ui-ux-designers"
@@ -35,7 +36,7 @@ Collect or extract at least one text-verifiable UI artifact before executing the
 2. **Markup & styling source:** HTML, JSX/TSX, CSS, Tailwind utility classes, and design-token files exposing colors, gradients, borders, blurs, chrome dimensions, and CTA hierarchy.
 3. **Interactive & business-flow logic:** Countdown hooks (`useEffect`/`setInterval`), checkbox defaults (`defaultChecked`), AI inference bindings, and signup vs. cancellation flow steps.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Read `./DESIGN.md` for exact token equations and remediation templates, then execute the following five checks in strict order using static source inspection (no computer vision required):
 
@@ -57,7 +58,7 @@ Read `./DESIGN.md` for exact token equations and remediation templates, then exe
 5. **Blind-Spot Guardrail Verification (`don-norman` Check):**
    - Before recommending deletion of any border, label, icon, or button, confirm the remediation does not turn interactive controls into low-contrast plain text or hide Undo/Back/Cancel actions. If recommending Braun signal yellow (`#E5A800`) on a light canvas, mandate a `1px` dark structural border (`#141413` or `#7D5600`) so non-text boundary contrast exceeds `3.0:1`.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Compute score `S` deterministically from base `100` using the immutable Phase A Calibrated Rubric:
 

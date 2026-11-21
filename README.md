@@ -2,14 +2,14 @@
 
 [![Validate Repository](https://github.com/JavierFrancoLeal/best-ui-ux-designers/actions/workflows/validate.yml/badge.svg)](https://github.com/JavierFrancoLeal/best-ui-ux-designers/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Ecosystem Contract](https://img.shields.io/badge/ECOSYSTEM__CONTRACT-v1.0.0-black.svg)](suite.yaml)
+[![Ecosystem Contract](https://img.shields.io/badge/ECOSYSTEM__CONTRACT-v1.1.0-black.svg)](suite.yaml)
 
-A portable, multi-harness adversarial UI/UX judgment suite for coding agents (`Google Antigravity`, `DeepSeek Harness`, `Claude Code`, `OpenAI Codex / ChatGPT`, `Cursor`, and `Windsurf / Devin Desktop`).
+A portable, CPU-first adversarial UI/UX judgment suite for `agentskills.io`-compatible coding agents (`Google Antigravity`, `DeepSeek Harness`, `Claude Code`, `OpenAI Codex / ChatGPT`, `Cursor`, and `Windsurf / Devin Desktop`).
 
-Built as **Suite #1 of 5** under `ECOSYSTEM_CONTRACT v1.0.0` (`suite_id: ui-ux`), `best-ui-ux-designers` combines:
-1. **Modular Operational Judgment Packaging** (inspired by `questflowai/investorskills`): `agentskills.io`-compliant `SKILL.md` entry points paired with hybrid YAML/Markdown `DESIGN.md` specifications.
-2. **Non-Consensual Adversarial Deliberation** (inspired by `virattt/ai-hedge-fund`): 12 orthogonal designers in a 50/50 *Barbell* roster, 4 unconditional *Via Negativa* technical auditors, and a regime-routed `design-director` orchestrator.
-3. **Deterministic Text-Only Verifiability**: Every signal, hard filter, veto, and heuristic maps to an observable code, AST, DOM, CSS, KLM-GOMS, or state-machine predicate—executable without screenshots or subjective aesthetics.
+Built as **Suite #1 of 5** under `ECOSYSTEM_CONTRACT v1.1.0` (`suite_id: ui-ux`), `best-ui-ux-designers` combines:
+1. **Deterministic CPU Pre-Scanning First** (`tools/uiux_cpu_scanner.py`, stdlib Python, JSON + SARIF 2.1.0): catches undefined JS calls, unguarded async mutations, `prefers-reduced-motion` omissions, non-compositor animations, focus/ARIA/touch/font-size defects, and declared brand-token exemptions in `<0.2 s` with zero variance.
+2. **Compact Operational Panel Briefs** (`skills/*/BRIEF.md`, `<= 25 KB` active panel budget): 18× smaller than raw `DESIGN.md` references while preserving full primary-source bibliographies and TSX recipes on demand.
+3. **Anti-Dilution Adversarial Deliberation**: 12 orthogonal designers in a 50/50 *Barbell* roster, 4 recalibrated *Via Negativa* auditors, single-root-cause deduplication (`BLOCKER` | `MAJOR` | `MINOR`), and terminable `Verdict Envelope v1.1.0`.
 
 ---
 
@@ -123,18 +123,18 @@ Use `adapters/install.sh` to mount the suite into any supported workspace or glo
 git clone https://github.com/JavierFrancoLeal/best-ui-ux-designers.git
 cd best-ui-ux-designers
 
-# Standalone single-suite installation (registers all 17 skills)
-./adapters/install.sh --target all --mode full --scope workspace --dest /path/to/your-project
-
-# Multi-suite coexistence mode (registers only design-director in active catalog;
-# mounts 12 designers + 4 auditors under design-director/references/ for lazy loading)
+# Default safe multi-suite installation (registers strictly 1 SKILL.md entry + bundled CPU scanner;
+# lazy references renamed to PROFILE.md / AUDITOR.md to defeat recursive **/SKILL.md discovery)
 ./adapters/install.sh --target all --mode director-only --scope workspace --dest /path/to/your-project
+
+# Run the zero-dependency CPU pre-scanner directly
+python3 tools/uiux_cpu_scanner.py --format markdown path/to/component.html
 
 # Preview actions safely without writing files
 ./adapters/install.sh --target antigravity --mode director-only --scope workspace --dest /path/to/your-project --dry-run
 ```
 
-Supported `--target` values: `antigravity`, `deepseek`, `claude`, `codex`, `cursor`, `windsurf`, `all`. All rule files are namespaced with the `uiux-` prefix (`uiux-bootstrap.md`, `uiux-director.mdc`, `uiux-director.md`), and `AGENTS.md` is updated idempotently via fenced markers (`<!-- BEGIN best-ui-ux-designers -->` ... `<!-- END best-ui-ux-designers -->`).
+Supported `--target` values: `antigravity`, `deepseek`, `claude`, `codex`, `cursor`, `windsurf`, `all`. All rule files use the exact `<suite_id>-` prefix (`ui-ux-bootstrap.md`, `ui-ux-director.mdc`, `ui-ux-director.md`), `AGENTS.md` (and any pre-existing regular `CLAUDE.md`) is updated idempotently via fenced markers (`<!-- BEGIN best-ui-ux-designers -->` ... `<!-- END best-ui-ux-designers -->`), and `install_deepseek` installs `dsh-plugin.json`.
 
 ---
 

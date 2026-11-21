@@ -4,8 +4,9 @@ description: "Audits and refactors dense analytics telemetry UIs, dashboards, an
 license: MIT
 compatibility: Text-only coding agents (DeepSeek V4, Claude Code, Codex, Cursor) auditing TSX/JSX, SVG, CSS, Recharts, or D3 configs without vision tools.
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "lindy_anchor"
   primary_regimes: "analytics_dense_telemetry"
   author: "best-ui-ux-designers"
@@ -36,7 +37,7 @@ Request or extract the following verifiable text artifacts before scoring (do no
 2. **Component & Chart Source Code:** TSX/JSX markup, Recharts/D3/Chart.js/Vega config props (`YAxis domain`, `Bar`, `Pie`, `Legend`, `CartesianGrid`, `Tabs`, SVG `<rect>`/`<circle>`/`<polyline>` geometry), and associated CSS/Tailwind classes.
 3. **Sample Data Values & Units:** At least min/max values, series count, cohort count, normal/SLO bounds (if applicable), and unit strings so Lie Factor (`0.95 <= LF <= 1.05`) and cross-panel scale parity can be computed arithmetically.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Execute the following deterministic sequence grounded in `./DESIGN.md`:
 
@@ -47,7 +48,7 @@ Execute the following deterministic sequence grounded in `./DESIGN.md`:
 5. **Step 5 — Direct Labels, Sparkline Density & Typography Check (`veto-04`, `veto-05`, `flt-04`, `flt-05`, `sig-04`, `sig-05`, `sig-06`):** Flag detached `<Legend />` on `<= 6` series, oversized single-number KPI cards (`> 12,000 px^2` lacking `n >= 10` trend sparkline + normal-range band), missing `font-variant-numeric: tabular-nums`, or left-aligned numeric columns.
 6. **Step 6 — Score & Remediate:** Compute the calibrated Phase A score, assign the exact posture (`APPROVE`, `REVISE`, or `BLOCK`), and emit copy-paste-ready TSX/SVG/CSS refactorings (consulting the reference patterns in `./DESIGN.md` Section 5).
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Apply this immutable calibrated scoring model for all in-universe (`analytics_dense_telemetry`) audits:
 

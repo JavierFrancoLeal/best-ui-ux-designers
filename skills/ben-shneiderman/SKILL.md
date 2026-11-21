@@ -4,8 +4,9 @@ description: Audits and refactors web, Electron, analytics, and AI-IDE interface
 license: MIT
 compatibility: Text-only and multimodal coding agents auditing React, TypeScript, Electron, web, or state-machine UI specifications; reads ./DESIGN.md in the same skill directory.
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "lindy_anchor"
   primary_regimes: "ai_native_desktop_ide,analytics_dense_telemetry"
   author: "best-ui-ux-designers"
@@ -39,7 +40,7 @@ Request or extract at least one of the following text-verifiable artifacts befor
 2. **Interaction specification or state table:** Explicit transitions from user/prompt input to system mutation, filter execution, or error recovery.
 3. **Performance & data profile (for analytics views):** Approximate record count (`N`), filter latency budget (client-indexed vs. remote API), and whether mutations are locally reversible.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Execute these five deterministic stages in order using the IDs defined in `./DESIGN.md`:
 
@@ -57,7 +58,7 @@ Execute these five deterministic stages in order using the IDs defined in `./DES
    * Prevent chrome bloat (`bs-02` / `dieter-rams`): cap persistent control strips at `<= 35%` of viewport area so primary objects/data retain `>= 65%`.
 5. **Stage 5 — Verdict & Compilable Remediation:** Compute the numeric score, declare `APPROVE`, `REVISE`, or `BLOCK`, and output minimal, directly compilable code/state-machine patches resolving every triggered veto first.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start from a base score of **100** and apply the immutable Phase A Calibrated Rubric strictly from `./DESIGN.md` findings:
 

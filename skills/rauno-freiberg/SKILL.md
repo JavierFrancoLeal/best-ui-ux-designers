@@ -4,8 +4,9 @@ description: Audits TSX/CSS UI code for interruptible interaction physics, compo
 license: MIT
 compatibility: Designed for AgentSkills-compatible text-only and multimodal coding agents auditing HTML, CSS, Tailwind, and React/TSX codebases without runtime browser execution.
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "convex_frontier"
   primary_regimes: "saas_b2b_intensive,mobile_consumer_capture"
   author: "best-ui-ux-designers"
@@ -35,7 +36,7 @@ Collect or inspect the following text-verifiable artifacts before scoring (no br
 2. **Component & stylesheet source:** HTML, JSX/TSX, CSS, and Tailwind classes covering transitions, `@keyframes`, `transform-origin`, `backdrop-filter`, `:hover`, `:focus-visible`, and `prefers-reduced-motion`.
 3. **Pointer & keyboard handlers:** `onClick`/`onMouseDown`, `pointermove`/`touchmove` drag logic, `toast()` invocations, submenu hover handlers, and hit-box dimensions.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Execute these steps sequentially over the target CSS, Tailwind, and TSX files using static text/AST inspection:
 
@@ -59,7 +60,7 @@ Execute these steps sequentially over the target CSS, Tailwind, and TSX files us
    - `medium`: `sig-07` (`touch_pointer_ergonomic_guards`).
 6. **Compute Calibrated Score & Emit Exact Remediations:** Apply the Phase A Calibrated Rubric below and output `file:line`, rule ID, deterministic cause, and exact CSS/TSX replacement patches following `./DESIGN.md` Section 5.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start every in-universe audit at base score `100` and apply deductions cumulatively (Phase A Calibrated Rubric — Immutable):
 

@@ -1,21 +1,41 @@
-ecosystem_contract_version: "1.0.0"
+ecosystem_contract_version: "1.1.0"
 suite_id: "ui-ux"
 repo_name: "best-ui-ux-designers"
 director_slug: "design-director"
 judgment_file: "DESIGN.md"
-schema_version: "1.0.0"
-sdlc_stages:
-  primary: ["plan", "design", "test"]
-  secondary: ["build", "deploy", "maintain"]
+schema_version: "1.1.0"
+synthesis_mode: "weighted_panel"
+sdlc_scope:
+  primary_artifacts:
+    - "**/*.html"
+    - "**/*.tsx"
+    - "**/*.jsx"
+    - "**/*.css"
+    - "**/*.vue"
+    - "**/*.svelte"
+  sdlc_stages: ["plan", "design", "build", "verify"]
+  explicit_out_of_scope:
+    - "sre_observability"
+    - "production_release_rollback"
+    - "cloud_finops"
 execution_modes:
-  architecture_review: "Plan/Design: run full design-director (4 active Barbell designers + adversarial rebuttal + 4 Via Negativa auditors)."
-  fast_pr_gate: "Build/Test/Maintain: run the 4 Via Negativa auditors on UI diffs; escalate to full design-director on hard_veto, new AI surface, or regime change."
+  fast_pr_gate: "Run tools/uiux_cpu_scanner.py + 4 Via Negativa auditors on UI diffs; escalate to design-director on BLOCKER, new AI surface, or regime shift."
+  architecture_review: "Run tools/uiux_cpu_scanner.py + design-director (4-5 active Barbell BRIEF.md panels + dialectical rebuttal + 4 auditors + Verdict Envelope v1.1.0)."
+tooling:
+  pre_scanner: "tools/uiux_cpu_scanner.py"
+  required_tools: ["python3"]
+  optional_tools: ["node"]
+  accepted_formats: ["json", "sarif", "exit_code"]
+  fail_closed_on_missing_required_tool: false
 roster_summary:
-  total_experts: 12
+  module_type: "expert_panel"
+  total_modules: 12
   lindy_anchors: 6
   convex_frontier: 6
   auditors: 4
   regimes: 5
+domain_extensions:
+  - "solow_stage"
 handoff_targets:
   - suite_id: "verification-eval"
     trigger_condition: "Interactive UI or agentic flow ships without independent clean-room behavioral tests, EvalOps error analysis, or deterministic state verification."

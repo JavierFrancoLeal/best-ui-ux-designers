@@ -21,11 +21,11 @@ jobs:
       - name: Install validation dependencies
         run: python3 -m pip install --upgrade pip && pip install -r requirements-dev.txt
 
-      - name: Run deterministic repository validation suite
+      - name: Run Ecosystem v1.1.0 + UI/UX deterministic validation & coexistence suite
         run: python3 validators/validate_repo.py
 
       - name: Verify installer syntax and dry-run modes
         run: |
           bash -n adapters/install.sh
-          bash adapters/install.sh --target all --mode full --scope workspace --dest /tmp/ci-uiux-full --dry-run
           bash adapters/install.sh --target all --mode director-only --scope workspace --dest /tmp/ci-uiux-director --dry-run
+          bash adapters/install.sh --target all --mode full --scope workspace --dest /tmp/ci-uiux-full --dry-run

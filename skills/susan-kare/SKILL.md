@@ -4,8 +4,9 @@ description: "Audits and refactors icon systems, SVG grids, visual metaphors, no
 license: MIT
 compatibility: "Text-only and multimodal coding agents (Claude Code, DeepSeek V4, Codex) auditing JSX/TSX, HTML, SVG, and CSS artifacts"
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "lindy_anchor"
   primary_regimes: "mobile_consumer_capture"
   author: "best-ui-ux-designers"
@@ -34,7 +35,7 @@ Request or extract the following verifiable artifacts before scoring (if any req
 3. **SVG geometry & styling tokens:** `viewBox`, `width`, `height`, `stroke-width` / `strokeWidth`, child primitive nodes, and resolved foreground/background CSS color values (hex/RGB/HSL) for every icon and badge state.
 4. **Action semantics:** handler names, visible text children, tooltips (`title`), and ARIA attributes (`aria-label`, `aria-labelledby`, `aria-hidden`, `aria-pressed`).
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Execute these 5 steps sequentially and deterministically:
 
@@ -55,7 +56,7 @@ Execute these 5 steps sequentially and deterministically:
    - Compute the numeric score and posture strictly via `## Scoring & Verdict Rubric`.
    - When posture is `BLOCK` or `REVISE`, output exact TSX/SVG/CSS diffs resolving every triggered veto, failed filter, and failed signal, referencing `./DESIGN.md` Section 5 patterns.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start from **Base Score = `100`** and apply deductions deterministically:
 - **`-35`** for each triggered **`hard_veto`** (imposes hard **`score_cap = 49`** and forces **`posture = BLOCK`**).

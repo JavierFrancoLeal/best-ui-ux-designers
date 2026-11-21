@@ -4,8 +4,9 @@ description: Audits and refactors mobile capture flows, checkouts, and onboardin
 license: MIT
 compatibility: Text-only LLM coding agents (DeepSeek V4, Claude, GPT) auditing HTML, JSX/TSX, CSS, and client-side form state machines without computer vision.
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "convex_frontier"
   primary_regimes: "mobile_consumer_capture,landing_onboarding_conversion"
   author: "best-ui-ux-designers"
@@ -30,7 +31,7 @@ metadata:
 3. **Stylesheet / Layout definitions**: CSS, Tailwind classes, or layout tokens exposing grid/flex column counts, computed input `font-size`, touch target dimensions (`min-width`/`min-height`), spacing gaps, and bottom/top positioning.
 4. **Validation & Auth state machine**: Event handlers (`onFocus`, `onChange`, `onBlur`, `onSubmit`), error-clearing transitions, value-preservation behavior on submit failure, and authentication gating rules.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 1. **Gate 0 — Regime Classification**: Check viewport, pointer modality, and primary user task against `DESIGN.md` Section 2. If the request targets `ai_native_desktop_ide`, `saas_b2b_intensive`, or `analytics_dense_telemetry`, immediately terminate scoring and return `in_universe: false`, `posture: "HANDOFF"`, and the matching `counterweight_handoff` slug.
 2. **Gate 1 — Hard Veto Scan (`veto-01`..`veto-05`)**:
@@ -43,7 +44,7 @@ metadata:
 4. **Gate 3 — Signal Scoring (`sig-01`..`sig-07`)**: Score all seven signals (`sig-01`..`sig-03` `critical`; `sig-04`..`sig-06` `high`; `sig-07` `medium`) deterministically from DOM, CSS, and state-machine evidence.
 5. **Gate 4 — Minimal Deterministic Remediation**: Compute the final score and verdict using the rubric below, then emit exact JSX/TSX + CSS patches resolving every triggered veto first, followed by failed filters and signals.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start from a base score of `100` and apply every applicable deduction:
 

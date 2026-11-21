@@ -1,29 +1,28 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
+  "ecosystem_contract_version": "1.1.0",
   "name": "best-ui-ux-designers",
-  "version": "1.0.0",
-  "description": "Portable adversarial UI/UX judgment suite (suite_id: ui-ux) optimized for deterministic text-only code, DOM, CSS, and state-machine audits on DeepSeek V4 Flash/Pro.",
+  "suite_id": "ui-ux",
+  "version": "1.1.0",
+  "description": "Portable CPU-first adversarial UI/UX judgment suite (suite_id: ui-ux) combining deterministic uiux_cpu_scanner.py with compact semantic reviews on DeepSeek Harness.",
   "license": "MIT",
-  "suite_manifest": "../../suite.yaml",
+  "suite_manifest": "./references/suite.yaml",
   "execution_profile": {
-    "modality": "text_only_deterministic_linter",
+    "modality": "cpu_first_plus_semantic_llm",
     "recommended_models": [
       "deepseek-v4-pro",
       "deepseek-flash"
     ],
-    "visual_unverifiable_marker": "UNVERIFIED_TEXT_ONLY",
-    "enforce_predicates": [
-      "observable_indicator",
-      "detection_rule",
-      "deterministic_predicates"
-    ]
+    "pre_scanner": "./tools/uiux_cpu_scanner.py",
+    "unverified_marker": "UNVERIFIED_MISSING_TOOL",
+    "max_operational_brief_bytes": 25600
   },
   "entrypoints": {
-    "director": "../../committee/design-director/SKILL.md",
-    "routing_matrix": "../../committee/design-director/routing-matrix.yaml",
-    "skills_dir": "../../skills",
-    "auditors_dir": "../../committee/auditors",
-    "agents_md": "../../AGENTS.md"
+    "director": "./SKILL.md",
+    "routing_matrix": "./routing-matrix.yaml",
+    "pre_scanner": "./tools/uiux_cpu_scanner.py",
+    "skills_dir": "./references/skills",
+    "auditors_dir": "./references/auditors"
   },
   "modes": {
     "director-only": {
@@ -31,30 +30,11 @@
         "design-director"
       ],
       "lazy_references": [
-        "skills/*",
-        "committee/auditors/*",
-        "committee/design-director/routing-matrix.yaml"
-      ]
-    },
-    "full": {
-      "active_skills": [
-        "design-director",
-        "dieter-rams",
-        "don-norman",
-        "edward-tufte",
-        "jef-raskin",
-        "ben-shneiderman",
-        "susan-kare",
-        "bret-victor",
-        "karri-saarinen",
-        "luke-wroblewski",
-        "rasmus-andersson",
-        "rauno-freiberg",
-        "agentic-flow-architect",
-        "auditor-cognitive-fatigue",
-        "auditor-latency-broken-states",
-        "auditor-physics-accessibility",
-        "auditor-agentic-anti-slop"
+        "references/skills/*/BRIEF.md",
+        "references/skills/*/PROFILE.md",
+        "references/auditors/*/rules.yaml",
+        "references/auditors/*/AUDITOR.md",
+        "references/suite.yaml"
       ]
     }
   }

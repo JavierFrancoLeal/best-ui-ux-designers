@@ -1,0 +1,24 @@
+---
+description: "Activates best-ui-ux-designers (suite_id: ui-ux, v1.1.0) for CPU-first adversarial UI/UX audits and Via Negativa circuit breakers on frontend source files."
+globs:
+  - "**/*.html"
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.css"
+  - "**/*.vue"
+  - "**/*.svelte"
+alwaysApply: false
+---
+
+# UI/UX Adversarial Judgment Director (`ui-ux-director`)
+
+Apply `best-ui-ux-designers` (`suite_id: ui-ux`, `ECOSYSTEM_CONTRACT v1.1.0`) when authoring, refactoring, or reviewing UI components, stylesheets, design tokens, or AI interaction surfaces.
+
+## Dual-Mode Routing
+- **Fast PR Gate (`build` / `verify`):** Run `python3 .cursor/skills/design-director/tools/uiux_cpu_scanner.py --format json <files...>` then apply semantic delta checks from `.cursor/skills/design-director/references/auditors/*/rules.yaml`. Escalate to `design-director` on any `BLOCKER` or new AI surface.
+- **Architecture Mode (`plan` / `design`):** Load `.cursor/skills/design-director/SKILL.md` and execute the 6-step CPU-first protocol using compact `BRIEF.md` profiles (`<= 25 KB`), emitting `Verdict Envelope v1.1.0`.
+
+## Guardrails
+- `BLOCKER >= 1` forces `REJECT`; unresolved `MAJOR >= 1` prohibits `SHIP`.
+- Single-root-cause deduplication per `file:line`; exempt declared brand palettes (`brand_exemption`).
+- Cite exact `file:line` and `evidence_tier` (`TOOL_VERIFIED | STATIC_LLM_INFERRED | UNVERIFIED_MISSING_TOOL`).

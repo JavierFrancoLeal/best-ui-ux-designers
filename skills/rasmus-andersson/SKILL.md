@@ -4,8 +4,9 @@ description: Audits and refactors analytics telemetry tables, B2B SaaS views, an
 license: MIT
 compatibility: Text-only and multimodal coding agents auditing HTML, CSS, Tailwind, design tokens, and JSX/TSX without screenshot dependencies
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "convex_frontier"
   primary_regimes: "analytics_dense_telemetry,landing_onboarding_conversion"
   author: "best-ui-ux-designers"
@@ -38,7 +39,7 @@ Request or extract the following text-verifiable artifacts before scoring (zero 
 3. **Styles & Design Tokens:** CSS, SCSS, Tailwind config, `@font-face` declarations / font CDN URLs, and foreground/background hex or RGB token pairs.
 4. **Font loading source:** Verification of whether Inter (or another variable sans-serif) is self-hosted (`InterVariable.woff2`), loaded from `rsms.me/inter/inter.css`, or imported from feature-stripped `fonts.googleapis.com`.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Execute these six steps in exact deterministic order:
 
@@ -49,7 +50,7 @@ Execute these six steps in exact deterministic order:
 5. **Spatial Grid & Cascade Integrity Audit (`sig-06`, `flt-05`, `veto-05`):** Check `px % 4 === 0` across all `padding`, `margin`, and `gap` declarations (excluding `1px`/`2px` borders); check role-bound `line-height` (`1.10–1.25` display, `1.20–1.35` dense table, `1.45–1.60` readable body); flag any `!important` in component CSS, `> 2` inline typography/spacing overrides per view, or child `font-feature-settings` rules that overwrite inherited parent OpenType tags.
 6. **Score & Remediate:** Compute final score and posture per the rubric below, then emit exact CSS/TSX patches resolving every triggered veto and failed filter.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start from **Base `100`** and apply exact deductions (floor `0`):
 

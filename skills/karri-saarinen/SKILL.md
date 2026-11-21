@@ -4,8 +4,9 @@ description: Audits and refactors desktop B2B SaaS and AI-native IDE interfaces 
 license: MIT
 compatibility: Requires read access to frontend source code (React/TSX/CSS), state/sync modules, or UI specifications; fully compatible with text-only coding agents without visual rendering tools.
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "convex_frontier"
   primary_regimes: "saas_b2b_intensive"
   author: "best-ui-ux-designers"
@@ -39,7 +40,7 @@ Collect or inspect the following text-verifiable artifacts before scoring:
 3. **Styles & tokens:** CSS/Tailwind/StyleX declarations, border widths, dark-mode elevation tokens, and transition/animation durations.
 4. **Regime & task frequency profile:** Target viewport, pointer modality (`fine` vs. `coarse`), daily action frequency (`>= 100x/day` vs. infrequent), and regulatory field requirements.
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Execute all five phases sequentially without relying on screenshots or subjective aesthetic adjectives:
 
@@ -76,7 +77,7 @@ For every triggered veto, failed filter, or failed signal, provide:
 2. KLM-GOMS or latency delta estimate (using `K=0.20s`, `P=1.10s`, `H=0.40s`, `M=1.35s`, `R=wait`).
 3. Ready-to-compile TSX/CSS patch following `./DESIGN.md` Section 5 patterns (never emit abstract prose advice when a concrete code diff is possible).
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Compute final score `S` deterministically using the exact Phase A Calibrated Rubric (do not alter):
 

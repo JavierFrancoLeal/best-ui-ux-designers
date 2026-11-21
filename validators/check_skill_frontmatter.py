@@ -27,7 +27,8 @@ DESIGNER_REQUIRED_ROOT_KEYS = {
 }
 DESIGNER_REQUIRED_METADATA = {
     "schema_version",
-    "design_schema",
+    "judgment_schema",
+    "suite_id",
     "barbell_pole",
     "primary_regimes",
     "author",
@@ -36,13 +37,15 @@ REQUIRED_DESIGNER_H2 = [
     "When To Use",
     "Do Not Use When",
     "Required Inputs",
-    "Audit & Design Workflow",
-    "Scoring & Verdict Rubric",
+    "Execution & Audit Workflow",
+    "Verdict & Severity Criteria",
     "Guardrails",
 ]
 PHASE_A_RUBRIC_TOKENS = ["-35", "49", "-15", "-10", "-5", "-2", "82", "60"]
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+DESIGNER_OPTIONAL_ROOT_KEYS = {"allowed-tools"}
 DISCOVERY_BUDGET_LIMIT = 8000
+DIRECTOR_DISCOVERY_BUDGET_LIMIT = 384
 
 
 def parse_frontmatter(path: Path) -> tuple[dict[str, Any] | None, str, str | None]:
@@ -140,9 +143,11 @@ def run_check(repo_root: Path) -> tuple[bool, list[str], dict[str, Any]]:
             total_discovery_chars += len(str(name or "")) + len(desc)
 
         if kind == "designer":
-            if set(fm.keys()) != DESIGNER_REQUIRED_ROOT_KEYS:
+            missing_root = DESIGNER_REQUIRED_ROOT_KEYS - set(fm.keys())
+            extra_root = set(fm.keys()) - (DESIGNER_REQUIRED_ROOT_KEYS | DESIGNER_OPTIONAL_ROOT_KEYS)
+            if missing_root or extra_root:
                 errors.append(
-                    f"{rel}: designer root keys must be exactly {sorted(DESIGNER_REQUIRED_ROOT_KEYS)}, got {sorted(fm.keys())}"
+                    f"{rel}: designer root keys invalid (missing={sorted(missing_root)}, extra={sorted(extra_root)})"
                 )
             if fm.get("license") != "MIT":
                 errors.append(f"{rel}: license must be 'MIT'")
@@ -153,10 +158,12 @@ def run_check(repo_root: Path) -> tuple[bool, list[str], dict[str, Any]]:
                 missing_meta = DESIGNER_REQUIRED_METADATA - set(meta.keys())
                 if missing_meta:
                     errors.append(f"{rel}: metadata missing {sorted(missing_meta)}")
-                if meta.get("schema_version") != "1.0.0":
-                    errors.append(f"{rel}: metadata.schema_version must be '1.0.0'")
-                if meta.get("design_schema") != "./DESIGN.md":
-                    errors.append(f"{rel}: metadata.design_schema must be './DESIGN.md'")
+                if meta.get("schema_version") != "1.1.0":
+                    errors.append(f"{rel}: metadata.schema_version must be '1.1.0'")
+                if meta.get("judgment_schema") != "./DESIGN.md":
+                    errors.append(f"{rel}: metadata.judgment_schema must be './DESIGN.md'")
+                if meta.get("suite_id") != "ui-ux":
+                    errors.append(f"{rel}: metadata.suite_id must be 'ui-ux'")
                 if meta.get("author") != "best-ui-ux-designers":
                     errors.append(f"{rel}: metadata.author must be 'best-ui-ux-designers'")
 

@@ -4,8 +4,9 @@ description: Audits and refactors AI-native desktop IDEs and telemetry analytics
 license: MIT
 compatibility: Designed for text-only code, AST, DOM, CSS, state-machine, and runtime telemetry audit agents; no screenshot or vision capability required.
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "convex_frontier"
   primary_regimes: "ai_native_desktop_ide,analytics_dense_telemetry"
   author: "best-ui-ux-designers"
@@ -40,7 +41,7 @@ Request or extract at least one of the following text-verifiable artifacts befor
 3. Execution boundary metadata identifying which state updates run locally versus invoke remote LLM APIs or mutating backend writes.
 4. Optional runtime telemetry (event-to-paint latency in ms, mount-time data render status, KLM operator sequence).
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Follow this sequential checklist on every run:
 
@@ -53,7 +54,7 @@ Follow this sequential checklist on every run:
 - [ ] **Step 7 — Compute Verdict & Emit Refactoring:** Calculate the exact numerical score using the rubric below. If verdict is `BLOCK` or `REVISE`, output concrete compilable code fixes matching the patterns in `./DESIGN.md` Section 5.
 - [ ] **Step 8 — Self-Validation Pass:** Confirm zero forbidden clichés appear in the audit report, every finding cites a falsifiable DOM/AST/latency bound, and every proposed scrubber preserves keyboard arrow stepping and explicit commit isolation.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start from a base score of **100** and apply the immutable Phase A Calibrated Rubric deterministically:
 

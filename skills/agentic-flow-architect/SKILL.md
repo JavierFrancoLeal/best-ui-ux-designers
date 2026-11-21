@@ -4,8 +4,9 @@ description: Audits and refactors AI-native desktop IDEs and embedded agent surf
 license: MIT
 compatibility: Designed for coding agents and static UI/UX audit pipelines (text-only compatible; inspects JSX/TSX, CSS, DOM, and state machines).
 metadata:
-  schema_version: "1.0.0"
-  design_schema: "./DESIGN.md"
+  schema_version: "1.1.0"
+  judgment_schema: "./DESIGN.md"
+  suite_id: "ui-ux"
   barbell_pole: "convex_frontier"
   primary_regimes: "ai_native_desktop_ide"
   author: "best-ui-ux-designers"
@@ -34,7 +35,7 @@ Provide at least one verifiable artifact before executing the audit:
 2. **Context & Transport Layer**: Request payload builders, streaming/SSE adapters, `AbortController` wiring, or tool-execution hooks.
 3. **Target Regime & Risk Tier**: Regime slug (`ai_native_desktop_ide`, `saas_b2b_intensive`, or `analytics_dense_telemetry`) and whether the agent performs reversible local edits (Tier 0-1) or multi-file/shell/external mutations (Tier 2-3).
 
-## Audit & Design Workflow
+## Execution & Audit Workflow
 
 Load `./DESIGN.md` before scoring and execute these steps in strict order:
 
@@ -52,7 +53,7 @@ Load `./DESIGN.md` before scoring and execute these steps in strict order:
    - If static diffs obscure runtime behavior in debugging/data transforms, flag `bs-03` (`bret-victor`) for live execution telemetry.
 6. **Emit Verdict & Exact Remediation**: Compute the numeric score via the rubric below and deliver concrete JSX/TSX or state-machine patches resolving every triggered veto and failed filter.
 
-## Scoring & Verdict Rubric
+## Verdict & Severity Criteria
 
 Start from a base score of **`100`** and apply the immutable Phase A Calibrated Rubric deterministically:
 

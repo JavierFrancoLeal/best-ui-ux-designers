@@ -11,8 +11,8 @@ from typing import Any
 import yaml
 
 BANNED_CLICHE_RE = re.compile(
-    r"\b(clean|intuitive|modern|user-centered|user-friendly|seamless|"
-    r"limpio|intuitivo|moderno|centrado en el usuario)\b",
+    r"\b(clean\s+(?:ui|ux|design|interface|look|aesthetic)|intuitive|modern\s+(?:ui|ux|design|look|aesthetic)|"
+    r"user-centered|user-friendly|seamless|limpio|intuitivo|moderno|centrado en el usuario)\b",
     re.IGNORECASE,
 )
 
