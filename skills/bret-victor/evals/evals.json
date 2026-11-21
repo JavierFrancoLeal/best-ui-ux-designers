@@ -1,0 +1,128 @@
+{
+  "skill_name": "bret-victor",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "bv-eval-01-ide-blind-rag-config",
+      "prompt": "Audit and refactor this React sidebar panel in our AI-native desktop IDE. Engineers currently type numbers into Min Similarity and Max Token Budget inputs and click 'Apply & Run Agent', which waits 2.4 seconds for the LLM to reply without showing which code chunks were retrieved or dropped.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02"
+        ],
+        "failed_filters": [
+          "flt-02"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02"
+        ]
+      },
+      "assertions": [
+        "Activates the bret-victor skill and declares regime ai_native_desktop_ide",
+        "Triggers hard veto veto-01 (blind_parameter_apply_gate) and veto-02 (opaque_black_box_agent_runner)",
+        "Computes a BLOCK verdict with final score capped at or below 49",
+        "Outputs refactored TSX using live role='slider' controls executing a local deterministic preview with 0 remote LLM calls during scrubbing",
+        "Exposes per-chunk intermediate pipeline state (selected, clipped_by_budget, rejected_by_similarity) with bidirectional rule-to-chunk hover highlighting and a separate explicit Commit button",
+        "Contains zero occurrences of the banned words clean, intuitive, modern, or user-centered"
+      ]
+    },
+    {
+      "id": "bv-eval-02-telemetry-ladder-slo",
+      "prompt": "Our telemetry alerting workbench only shows a modal with Latency Threshold (ms) and Moving Average Window (hours) text inputs plus a Save button. Redesign it so SREs can see how transient micro-spikes behave across both time and neighboring threshold/window pairs before committing a rule.",
+      "expected_trigger": true,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 15,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-03"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-03",
+          "sig-04"
+        ]
+      },
+      "assertions": [
+        "Activates the bret-victor skill and declares regime analytics_dense_telemetry",
+        "Identifies veto-01 (blind_parameter_apply_gate) and veto-05 (single_rung_static_kpi_panel)",
+        "Implements at least two coupled Ladder of Abstraction rungs (Rung-2 parameter sensitivity sweep matrix coupled on pointer hover to Rung-1 temporal trajectory and Rung-0 concrete hour readout)",
+        "Infers initial default threshold from historical telemetry distribution at mount (Magic Ink flt-03 / heur-07) rather than blank inputs",
+        "Updates Rung-1 and Rung-0 projections synchronously on hover without requiring form submission or remote API calls"
+      ]
+    },
+    {
+      "id": "bv-eval-03-llm-scrubbing-guardrail",
+      "prompt": "Review this live prompt-tuning slider component for our desktop AI IDE: onChange on the Temperature and Top-K sliders fires fetch('/api/llm/complete') on every drag event so the user gets immediate live output.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 45,
+        "triggered_vetos": [
+          "veto-03"
+        ],
+        "failed_filters": [
+          "flt-01"
+        ],
+        "failed_signals": [
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Activates the bret-victor skill and declares regime ai_native_desktop_ide",
+        "Triggers hard veto veto-03 (unbounded_remote_llm_on_scrub) and required filter failure flt-01",
+        "Issues a BLOCK verdict with score capped at or below 49",
+        "Explains the physical latency gap between a 16.67 ms 60 Hz frame budget and remote LLM TTFT plus runaway API call and stale-response waste",
+        "Refactors the component into a dual-loop architecture: local deterministic preview during scrubbing and explicit Commit button displaying projected cost before remote LLM dispatch"
+      ]
+    },
+    {
+      "id": "bv-eval-04-near-miss-b2b-issue-triage",
+      "prompt": "We are building a high-volume B2B SaaS issue tracker where support leads triage 120 tickets per hour, assigning priority, labels, and owners using keyboard shortcuts. Should we replace our keyboard command palette with live graphical sliders and multi-rung simulation panels?",
+      "expected_trigger": false,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "karri-saarinen"
+      },
+      "assertions": [
+        "Does not run a bret-victor live-simulation refactor and explicitly classifies the request as out_of_universe (saas_b2b_intensive)",
+        "Cites blind spot bs-02 explaining that pointer-driven scrubbing adds KLM homing (0.40 s) and pointing (1.10 s) penalties on >20 ops/hour known-input triage",
+        "Routes the user to counterweight designer karri-saarinen for keyboard-first sub-50 ms execution"
+      ]
+    },
+    {
+      "id": "bv-eval-05-out-of-universe-landing-funnel",
+      "prompt": "Optimize our SaaS marketing landing page hero section and 3-step self-serve signup onboarding flow to improve trial conversion rate on desktop and mobile browsers.",
+      "expected_trigger": false,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Declines activation of bret-victor and explicitly identifies landing_onboarding_conversion (and mobile capture constraints) as out_of_universe",
+        "Does not propose live simulation panels, sensitivity heatmaps, or pipeline trace inspectors for a conversion funnel",
+        "Routes the user to appropriate regime specialists (luke-wroblewski or dieter-rams)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "skill_name": "edward-tufte",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-saas-dashboard-lie-factor-and-pie",
+      "prompt": "Audit and refactor our React/Recharts production telemetry dashboard (1440px desktop). It currently renders four 260x140px KPI cards with deep box-shadows showing only one large number each (Checkout p95: 171ms, 5xx: 0.57%, DB Pool: 62%, Auth: 97.7%), a PieChart with a bottom Legend for 4 traffic channels, and a Regional Uptime BarChart with <CartesianGrid stroke='#374151' strokeWidth={2} /> and <YAxis domain={[80, 100]} /> plotting [88.4, 92.1, 95.8, 97.2].",
+      "expected_trigger": true,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-04",
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02",
+          "flt-04",
+          "flt-05"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-04",
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Computes exact Lie Factor = 10.52 for domain={[80, 100]} on [88.4..97.2] (104.76% graphic effect / 9.95% data effect) and triggers veto-01 and flt-01.",
+        "Flags the PieChart as veto-02 and flt-02, replacing it with a value-sorted horizontal BarChart or right-aligned tabular-nums table.",
+        "Flags oversized shadowed single-number KPI cards (veto-05, flt-05) and replaces them with a compact table featuring inline SVG sparklines (n >= 10), gray normal-range bands, min/max dots, and direct latest readouts.",
+        "Flags heavy 2px dark CartesianGrid, card box-shadows, and detached Legend (veto-04, flt-04) and enforces direct LabelList values.",
+        "Applies Phase A arithmetic: 100 - 35*2 (veto-01, veto-02) - 15*2 (veto-04, veto-05) - 15*4 (flt-01, flt-02, flt-04, flt-05) - 10*2 (sig-01, sig-02) - 5*2 (sig-04, sig-05) = -90, capped at 49 and floored to 0 with posture BLOCK.",
+        "Uses only quantitative formulas, pixel/contrast bounds, and AST predicates with zero vague aesthetic adjectives."
+      ]
+    },
+    {
+      "id": "eval-02-detached-legend-and-tabular-nums-revise",
+      "prompt": "Review this desktop SRE observability panel (1280px). It uses a zero-baseline BarChart (<YAxis domain={[0, 100]} />), a 4-panel Small Multiples grid sharing domain={[0, 210]}, inline 24-point sparklines with gray normal-range bands, zero PieCharts, zero box-shadows, and subtle 1px #E5E7EB horizontal hairlines (high data-ink ratio). However, the 3-series latency LineChart renders a detached bottom <Legend /> instead of direct endpoint labels, and the numeric summary table omits font-variant-numeric: tabular-nums and left-aligns all numeric columns.",
+      "expected_trigger": true,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 63,
+        "triggered_vetos": [
+          "veto-04"
+        ],
+        "failed_filters": [
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-04",
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Confirms zero hard_veto triggers and passing sig-01/sig-02/sig-03/sig-05 because bar baseline is 0 (LF = 1.00), chrome is already stripped (no box-shadows, no heavy grids, no pies), small multiples share domain={[0, 210]}, and sparklines include normal bands.",
+        "Triggers conditional_block veto-04 (-15) and failed filter flt-04 (-15) strictly for the detached <Legend /> on a 3-series chart.",
+        "Flags sig-04 (-5, high) for detached legend saccade cost and sig-06 (-2, medium) for missing tabular-nums and left-aligned numeric cells.",
+        "Computes exact Phase A score: 100 - 15 - 15 - 5 - 2 = 63, yielding posture REVISE (0 hard_veto, active conditional_block, 60 <= S < 82).",
+        "Provides exact JSX/CSS patch removing <Legend />, attaching terminal SVG <text> labels within <= 8px, and adding font-variant-numeric: tabular-nums with text-align: right."
+      ]
+    },
+    {
+      "id": "eval-03-compliant-sparkline-small-multiples-approve",
+      "prompt": "Score our refactored desktop telemetry console (1440px). It displays 4 operational metrics in a borderless white table with right-aligned tabular-nums columns, 1px #E5E7EB row hairlines, and 120x22px inline SVG sparklines (24 hourly readings, gray #E5E7EB normal-range rect at opacity 0.85, blue min/max dots, red terminal dot + direct numeric readout when out of band), alongside a 2x2 Small Multiples latency grid sharing domain={[0, 210]} with a dashed 100ms SLO line and a value-sorted horizontal BarChart with domain={[0, 100]} and direct LabelList values (0 Legends, 0 PieCharts, 0 box-shadows).",
+      "expected_trigger": true,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "APPROVE",
+        "score_cap": 100,
+        "expected_score": 100,
+        "triggered_vetos": [],
+        "failed_filters": [],
+        "failed_signals": []
+      },
+      "assertions": [
+        "Verifies all 5 hard_filters pass: zero-baseline horizontal bars (LF = 1.00), zero pie/donut/3D/dual-axis encodings, concurrent Small Multiples on shared [0, 210] Y-domain, direct LabelList/endpoint labeling without detached Legends, and contextualized 24-point sparklines with normal bands.",
+        "Verifies all 6 signals pass, including tabular-nums, right-aligned numeric columns, and 1px #E5E7EB low-contrast hairlines preventing 1+1=3 vibration.",
+        "Computes exact Phase A score of 100 with 0 triggered vetos, 0 failed filters, 0 failed signals, and posture APPROVE."
+      ]
+    },
+    {
+      "id": "eval-04-out-of-universe-conversion-landing",
+      "prompt": "Apply Edward Tufte's high-density table and small-multiples principles to our B2C SaaS homepage hero and 3-step signup onboarding funnel so first-time visitors see 18 comparative feature benchmarks and inline sparklines above the 'Start Free Trial' CTA.",
+      "expected_trigger": false,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Detects landing_onboarding_conversion as an out_of_universe_regime during Step 1 Regime Gate before running chart scoring.",
+        "Returns posture HANDOFF with in_universe: false rather than issuing an in-universe numeric score.",
+        "Cites empirical blind-spot rationale (extraneous first-visit cognitive friction and lowest at-a-glance recall for minimalist high-density displays per Borkin et al., 2013 and Inbar et al., 2007).",
+        "Delegates explicitly to valid roster counterweight slug luke-wroblewski."
+      ]
+    },
+    {
+      "id": "eval-05-out-of-universe-saas-million-row-triage",
+      "prompt": "We are building an interactive B2B SaaS incident-management console where operators query 6 million raw log rows, apply multi-facet dynamic filter sliders, drill down into stack traces, and bulk-assign/resolve alerts using keyboard shortcuts. Audit this workflow using Tufte's static direct-plotting rules.",
+      "expected_trigger": false,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "ben-shneiderman"
+      },
+      "assertions": [
+        "Detects saas_b2b_intensive (high-cardinality interactive transactional triage over 6 million raw rows) as out_of_universe during Step 1 Regime Gate.",
+        "Returns posture HANDOFF with in_universe: false and omits in-universe Tufte scoring.",
+        "Explains blind spot bs-01: static direct plotting fails due to overplotting and DOM collapse at 10^6+ events and omits interactive query/mutation affordances.",
+        "Delegates explicitly to valid roster counterweight slug ben-shneiderman (Overview first, zoom and filter, then details-on-demand)."
+      ]
+    }
+  ]
+}

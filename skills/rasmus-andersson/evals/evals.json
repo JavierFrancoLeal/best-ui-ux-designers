@@ -1,0 +1,127 @@
+{
+  "skill_name": "rasmus-andersson",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-telemetry-ledger-proportional-ambiguous-block",
+      "prompt": "Audit this React financial settlement telemetry table for desktop analysts. CSS loads Inter from https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap. Numeric columns (USD amounts, 24h deltas, P99 latencies) use text-align: left without font-variant-numeric: tabular-nums. Settlement and account codes like O01lI-9B0l render in default Inter with no ss02/cv05/cv08/zero OpenType features. The view uses 8 ad-hoc raw pixel font sizes (11.5px, 12.5px, 13px, 14px, 15px, 17px, 19px, 22px) across 2 weights (400/600) with zero headings >= 24px and no prose blocks; spacing is strictly on 4px multiples (8px, 12px, 16px) with line-height: 1.30, zero !important, min-height cells without overflow: hidden, uniform 16px icons, and 17.81:1 text contrast (#F3F5F8 on #0B0D10).",
+      "expected_trigger": true,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02",
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Classifies the task as in_universe under analytics_dense_telemetry and triggers BLOCK with score_cap 49.",
+        "Triggers veto-01 (proportional left-aligned numeric columns), veto-02 (undisambiguated O01lI-9B0l identifiers plus feature-stripped Google Fonts Inter), and veto-03 (> 6 ad-hoc raw font sizes).",
+        "Computes exact score arithmetic: 100 - 3*35 (hard vetos) - 3*15 (flt-01, flt-02, flt-04) - 2*10 (sig-01, sig-02) - 5 (sig-05) = -75, floored to expected_score 0.",
+        "Prescribes self-hosted InterVariable.woff2, font-variant-numeric: tabular-nums + text-align: right on numeric columns and headers, OpenType disambiguation ('ss02' 1 or 'cv05' 1, 'cv08' 1, 'cv11' 1, 'zero' 1), and consolidation to <= 6 semantic --text-* tokens."
+      ]
+    },
+    {
+      "id": "eval-02-landing-hero-measure-tracking-block",
+      "prompt": "Audit this desktop SaaS landing hero and 3-tier pricing matrix. Self-hosted InterVariable.woff2 is loaded. All pricing amounts and comparison cells already declare font-variant-numeric: tabular-nums and text-align: right, contrast passes WCAG AA (#111318 and #4B5563 on #FFFFFF, >= 7.56:1), spacing uses 8px/16px/24px/48px tokens with zero !important, line-heights fit their roles (1.12 h1, 1.55 p, 1.35 table) with no overflow clipping, and the view uses 5 tokenized font sizes across 3 weights (400/500/600) with uniform 16px icons. However, the 48px hero h1 declares letter-spacing: 0.01em with font-optical-sizing: none, and the hero value-proposition paragraph has no max-width so it spans 112ch across desktop viewports.",
+      "expected_trigger": true,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 40,
+        "triggered_vetos": [
+          "veto-03"
+        ],
+        "failed_filters": [
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-03",
+          "sig-04"
+        ]
+      },
+      "assertions": [
+        "Classifies the task as in_universe under landing_onboarding_conversion and triggers BLOCK with score_cap 49.",
+        "Triggers only veto-03 (112ch unbounded prose > 80ch and 48px heading with +0.01em tracking and font-optical-sizing: none), fails flt-04, and flags sig-03 (high) and sig-04 (high).",
+        "Does not falsely trigger veto-01, veto-02, veto-04, or veto-05 because tabular pricing, contrast, and 4px grid tokens pass.",
+        "Computes exact score arithmetic: 100 - 35 (veto-03) - 15 (flt-04) - 5 (sig-03) - 5 (sig-04) = 40 (<= 49 cap).",
+        "Prescribes max-width: 65ch (45ch-75ch band), font-optical-sizing: auto, and Dynamic Metrics negative tracking (-0.022em at 48px)."
+      ]
+    },
+    {
+      "id": "eval-03-saas-b2b-spacing-override-revise",
+      "prompt": "Audit this B2B SaaS desktop billing workspace component. It uses self-hosted InterVariable.woff2 with font-optical-sizing: auto, Dynamic Metrics tracking (-0.019em on 24px header), tabular-nums with right-aligned invoice totals, 'ss02' 1 on invoice IDs, max-width: 60ch on helper text, 5 tokenized font sizes, 3 weights (400/500/600), uniform 16px icons (1.5px stroke), and WCAG AA contrast (>= 7.11:1) with no fixed-height overflow clipping. However, .invoice-panel sets padding: 13px 15px and gap: 7px, .invoice-table td sets line-height: 1.12, and .invoice-badge uses padding: 5px 9px !important.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 68,
+        "triggered_vetos": [
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-05"
+        ],
+        "failed_signals": [
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Classifies the task as in_universe under secondary regime saas_b2b_intensive and assigns posture REVISE with zero hard vetos.",
+        "Triggers conditional_block veto-05 (off-grid spacing 13px/15px/7px/5px/9px and !important in component CSS), fails disqualifier flt-05, and flags medium signal sig-06 (off-grid spacing plus dense table line-height 1.12 below 1.20 floor).",
+        "Computes exact score arithmetic: 100 - 15 (veto-05) - 15 (flt-05) - 2 (sig-06) = 68, with no 49-point cap applied.",
+        "Prescribes snapping all spacing literals to 4px multiples (4px, 8px, 12px, 16px), raising dense tabular line-height into 1.20-1.35, and eliminating !important via composable variant tokens."
+      ]
+    },
+    {
+      "id": "eval-04-out-of-universe-ai-ide-handoff",
+      "prompt": "Design the execution approval flow, speculative multi-file diff review UI, terminal permission escalation boundaries, and deterministic rollback UX for an autonomous coding agent inside our desktop AI-native IDE (note: the editor chrome uses Inter 13px).",
+      "expected_trigger": false,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "agentic-flow-architect"
+      },
+      "assertions": [
+        "Detects ai_native_desktop_ide as an out_of_universe regime despite the near-miss mention of Inter 13px.",
+        "Outputs in_universe: false, posture: HANDOFF, and counterweight_handoff: agentic-flow-architect without issuing a typographic APPROVE/REVISE/BLOCK score.",
+        "Explains that glyph precision and tokenized grids cannot govern autonomous agent permissions, diff verification, or rollback safety, referencing ben-shneiderman as secondary supervisory-control counterweight."
+      ]
+    },
+    {
+      "id": "eval-05-out-of-universe-mobile-capture-handoff",
+      "prompt": "Redesign our one-handed iOS/Android receipt-capture flow and 3-step mobile consumer signup form on 375px screens to reduce drop-off: optimize lower thumb-zone CTA reach, 44x44px touch targets, camera shutter ergonomics, and progressive field reduction (labels are currently set in Inter 16px).",
+      "expected_trigger": false,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Detects mobile_consumer_capture as an out_of_universe regime despite the near-miss mention of Inter 16px.",
+        "Outputs in_universe: false, posture: HANDOFF, and counterweight_handoff: luke-wroblewski without applying desktop grid or telemetry scoring.",
+        "Explains that mobile one-handed thumb ergonomics, >= 44x44px touch targets, and single-column form reduction fall outside rasmus-andersson's primary convex-frontier scope."
+      ]
+    }
+  ]
+}

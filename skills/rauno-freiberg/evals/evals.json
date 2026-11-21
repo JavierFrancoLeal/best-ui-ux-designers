@@ -1,0 +1,144 @@
+{
+  "skill_name": "rauno-freiberg",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-saas-popover-blocking-layout-toast",
+      "prompt": "Review this SaaS B2B ActionPopover.tsx and action-popover.css component before merge. The button uses `transition: all 350ms ease`, opens on `onClick`, displays a menu animated with `@keyframes openMenu { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }` for 320ms using default `transform-origin: center`, sets `font-weight: 600` on `.menu-item:hover` with no media query guard, leaves `gap: 8px` between items, lacks `prefers-reduced-motion`, and calls `toast('Copied API key')` inside the synchronous Copy button handler.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03",
+          "veto-04",
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02",
+          "flt-03"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-03",
+          "sig-04",
+          "sig-06",
+          "sig-07"
+        ]
+      },
+      "assertions": [
+        "Triggers hard vetos veto-01 (transition: all), veto-02 (@keyframes + scale(0) + center transform-origin), and veto-03 (missing prefers-reduced-motion + unwrapped :hover).",
+        "Triggers conditional blocks veto-04 (distant toast on synchronous copy) and veto-05 (unreserved font-weight hover shift).",
+        "Flags sig-03 for exceeding the <=200ms standard and <=300ms ceiling (350ms button transition and 320ms menu reveal).",
+        "Applies Phase A rubric cap of <= 49 (floored at 0 after deductions) and outputs posture BLOCK.",
+        "Remediates with explicit compositor transitions (transform, opacity) <=200ms using @starting-style, trigger-bound transform-origin, initial scale 0.93-0.98, mousedown trigger, @media (hover: hover) and (pointer: fine), @media (prefers-reduced-motion: reduce), zero dead list gap, bold ::after width reservation on the label wrapper or color-only hover, and inline trigger checkmark with polite aria-live."
+      ]
+    },
+    {
+      "id": "eval-02-mobile-capture-drawer-height-jank",
+      "prompt": "Audit this mobile capture CaptureSheet.tsx drawer for iOS and Android web. On open it runs `@keyframes slideSheet { from { height: 0; } to { height: 480px; } }` for 550ms, tracks touch dragging via `useState` updating `--drag-offset` CSS variable on the sheet wrapper containing 35 list items, applies `backdrop-filter: blur(36px)` on the overlay, omits `prefers-reduced-motion`, sets `<input>` `font-size: 13px`, and renders a `20px x 20px` close icon button.",
+      "expected_trigger": true,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03",
+          "veto-04",
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02",
+          "flt-03",
+          "flt-05"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-03",
+          "sig-05",
+          "sig-07"
+        ]
+      },
+      "assertions": [
+        "Triggers hard vetos veto-01 (height animation), veto-02 (blocking @keyframes open), and veto-03 (missing prefers-reduced-motion).",
+        "Triggers conditional blocks veto-04 (inherited CSS variable --drag-offset mutated during drag across >20 items + React state per frame) and veto-05 (animated blur 36px > 20px).",
+        "Flags sig-03 (550ms exceeds even the 500ms iOS sheet exception) and flt-05 for 13px mobile input (iOS Safari auto-zoom) and 20x20px close hit target (<44x44px touch minimum).",
+        "Applies Phase A rubric cap <= 49 (floored at 0) and posture BLOCK.",
+        "Remediates with transform: translate3d(0, 100%, 0) interruptible transition <=500ms, direct DOM ref style writes with setPointerCapture, release-only dismissal via velocity projection or distance (>=25%), nonlinear upward rubber-banding (UIKit c = 0.55), 500ms scroll-lock debounce, overscroll-behavior: contain, <=20px blur, 44x44px close hit target, and >=16px input font-size."
+      ]
+    },
+    {
+      "id": "eval-03-ai-ide-submenu-blur-revise",
+      "prompt": "Audit this AI IDE CommandContextMenu.tsx component. It already uses cancelable CSS transitions (`transform 140ms ease-out, opacity 140ms ease-out`) with `@starting-style`, `transform-origin: var(--radix-popper-transform-origin)`, initial `scale(0.96)`, `0ms` duration on Cmd+K and keyboard arrow selection, `:focus-visible` box-shadow rings, `@media (hover: hover) and (pointer: fine)`, `>=24px` desktop / `>=44px` touch targets, `tabular-nums`, and a `prefers-reduced-motion: reduce` fallback. However, its frosted panel animates `backdrop-filter: blur(28px)` on open, and its nested 'Refactor Actions' hover submenu closes immediately whenever the pointer moves diagonally across sibling items.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 80,
+        "triggered_vetos": [
+          "veto-05"
+        ],
+        "failed_filters": [],
+        "failed_signals": [
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Triggers zero hard vetos (veto-01, veto-02, veto-03 all pass) and zero hard filter failures (flt-01..flt-05 pass).",
+        "Triggers conditional_block veto-05 (-15) for animated blur(28px) exceeding 20px and nested hover submenu missing safe-triangle prediction cone.",
+        "Fails high signal sig-05 (-5) for dynamic_blur_radius_px = 28px > 20px.",
+        "Computes exact calibrated score S = 100 - 15 - 5 = 80 and maps posture to REVISE (60 <= S < 82 and unresolved conditional_block).",
+        "Remediates by lowering animated blur to <=20px (e.g., 12px) and implementing a safe-triangle prediction cone (atan2 with 15-degree angular grace buffer, 2 consecutive invalid move samples, <=16ms throttle, or dynamic clip-path: polygon corridor)."
+      ]
+    },
+    {
+      "id": "eval-04-out-of-universe-telemetry-dashboard",
+      "prompt": "We are designing a real-time algorithmic trading and Kubernetes telemetry console displaying 48 live-updating KPI sparklines and a 200-row numeric order book refreshing at 4 Hz. Please add Framer Motion spring animations to every price cell update, staggered row entrance choreography, and frosted glass blur cards so the telemetry screen feels tactile.",
+      "expected_trigger": false,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "edward-tufte"
+      },
+      "assertions": [
+        "Correctly classifies the screen as out-of-universe regime analytics_dense_telemetry (>=12 live numeric series refreshing at >=1 Hz).",
+        "Declines to run full interaction-physics scoring or prescribe spring/blur/stagger choreography.",
+        "Explicitly rejects Framer Motion springs, staggered entrances, and frosted blur on live telemetry data due to data-ink degradation, GPU contention, and perceptual lag.",
+        "Delegates primary evaluation to valid roster slug edward-tufte while retaining tabular-nums and zero-shift static typography hygiene."
+      ]
+    },
+    {
+      "id": "eval-05-near-miss-landing-conversion-funnel",
+      "prompt": "Review our public B2C marketing homepage hero and 3-step paid-acquisition signup funnel to improve trial conversion rate on 3G mobile connections, optimize headline value proposition hierarchy, and add scroll-linked Framer Motion parallax reveals across all pricing sections.",
+      "expected_trigger": false,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Correctly classifies the request as out-of-universe regime landing_onboarding_conversion.",
+        "Does not trigger full SaaS/mobile interaction-physics scoring under rauno-freiberg.",
+        "Warns against adding full client-side animation runtimes (~30-34 kB gzipped) and scroll-linked parallax that delay LCP and time-to-first-action on constrained mobile networks.",
+        "Delegates primary evaluation to valid roster slug luke-wroblewski for mobile-first conversion and form ergonomics."
+      ]
+    }
+  ]
+}

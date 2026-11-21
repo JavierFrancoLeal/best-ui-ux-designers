@@ -1,0 +1,128 @@
+{
+  "skill_name": "agentic-flow-architect",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-ide-chat-wrapper-refactor",
+      "prompt": "Audit and refactor this desktop IDE React sidebar component: users paste selected TypeScript code into a blank textarea, click Send, wait 5 seconds on a blocking spinner via await fetch('/api/chat'), and then click Copy on a markdown code block to paste back into the editor. If the AI breaks something, users type 'undo that' in the chat.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-03",
+          "veto-04",
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02",
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-03",
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Activates agentic-flow-architect in primary regime ai_native_desktop_ide.",
+        "Triggers hard vetoes veto-01 (detached_chat_wrapper_copy_paste_loop), veto-03 (blocking_spinner_without_stream_or_abort), and veto-04 (conversational_undo_only), plus conditional block veto-05.",
+        "Applies the -35 per hard_veto rule and enforces the hard score cap <= 49, returning verdict BLOCK.",
+        "Provides a concrete JSX/TSX remediation featuring implicit selection/diff capture, ReadableStream + AbortController bound to Esc, inline diff hunks with per-hunk Keep/Undo, and deterministic pre-turn snapshot rollback in <= 2 keystrokes.",
+        "Contains zero occurrences of the four schema-prohibited decorative adjectives in findings, rules, or patches."
+      ]
+    },
+    {
+      "id": "eval-02-multi-file-agent-shell-gating",
+      "prompt": "Review our autonomous IDE refactoring agent: when the user clicks 'Migrate Repo', it edits 14 files silently on disk and runs 'npm test && git push' via child_process while showing only a generic 'AI is working...' label, with no pre-turn file snapshots, no raw command inspection, and no human owner attached to the run.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 15,
+        "triggered_vetos": [
+          "veto-02",
+          "veto-06"
+        ],
+        "failed_filters": [
+          "flt-03"
+        ],
+        "failed_signals": [
+          "sig-04",
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Activates agentic-flow-architect and flags hard veto veto-02 (silent_multi_file_or_shell_mutation_without_checkpoint) and conditional block veto-06 (opaque_black_box_tool_execution).",
+        "Caps final score at <= 49 and returns verdict BLOCK.",
+        "Mandates pre-turn immutable snapshot persistence, a 6-state AgentSession FSM (pending|active|awaitingInput|error|complete|stale), a permission card exposing Show Command with Enter/Esc bindings, and an explicit warning that shell/git-push side effects are not reversed by session checkpoints.",
+        "Escalates blind spot bs-01 and arbitration rule dbt-01 to counterweight designer ben-shneiderman for high-consequence multi-file and external-effect gating with named human accountability."
+      ]
+    },
+    {
+      "id": "eval-03-saas-embedded-ai-15pct-injection",
+      "prompt": "We are embedding an AI SQL-diff and issue-triage delegate into our high-density B2B analytics and issue-tracking workspace. Right now the AI takes over 22% of the viewport with a permanent chat drawer, forces analysts to send 3-4 'make it shorter / add column X' prompts (Accordion Editing), and sets the AI bot as the primary issue assignee.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 80,
+        "triggered_vetos": [
+          "veto-05"
+        ],
+        "failed_filters": [],
+        "failed_signals": [
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Activates agentic-flow-architect explicitly under the 15% cross-cutting secondary injection rule for saas_b2b_intensive and analytics_dense_telemetry because an embedded AI surface exists.",
+        "Flags Accordion Editing (sig-05, heur-07, veto-05), human accountability violation (heur-10: agent must be delegate, never primary assignee), and viewport chrome excess (>4% limit under heur-10 and dbt-03).",
+        "Applies arbitration rule dbt-03 with edward-tufte to cap persistent AI chrome to <= 4% viewport area and collapse tool provenance behind on-demand selection triggers.",
+        "Replaces iterative shrink/expand chat prompting with contextual Cmd+K actions (<= 50 ms) or inline direct-manipulation controls anchored to the selected query/issue."
+      ]
+    },
+    {
+      "id": "eval-04-out-of-universe-landing-conversion",
+      "prompt": "Design a mobile-first SaaS marketing landing page and 3-step self-serve signup onboarding flow with a sticky bottom thumb-zone CTA, social proof logos, and an annual-vs-monthly pricing toggle to lift trial conversion.",
+      "expected_trigger": false,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Refuses activation of agentic-flow-architect and explicitly classifies the task as OUT_OF_UNIVERSE (landing_onboarding_conversion and mobile_consumer_capture).",
+        "Does not impose desktop IDE Cmd+K launchers, inline code diffs, or agent session-state scoring rubrics onto the marketing/onboarding funnel.",
+        "Routes the request to luke-wroblewski for mobile-first conversion ergonomics."
+      ]
+    },
+    {
+      "id": "eval-05-near-miss-non-ai-dense-saas",
+      "prompt": "Audit our keyboard-first B2B financial ledger table and telemetry dashboard: it has a local-first sync engine targeting <50 ms row updates, a Cmd+K quick-jump command palette, and dense real-time sparklines, with zero LLM endpoints, zero AI assistants, and zero autonomous agents.",
+      "expected_trigger": false,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "karri-saarinen"
+      },
+      "assertions": [
+        "Recognizes the near-miss keywords (Cmd+K, <50 ms local sync, telemetry dashboard) without falsely triggering agentic-flow-architect.",
+        "Fires disqualifier filter flt-05 (non_ai_surface_disqualifier) because generativeInferenceEndpoints === 0 and agentToolCalls === 0.",
+        "Outputs OUT_OF_UNIVERSE and routes the audit to karri-saarinen (sub-50ms SaaS interaction velocity) and edward-tufte (dense quantitative telemetry)."
+      ]
+    }
+  ]
+}

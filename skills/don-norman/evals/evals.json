@@ -1,0 +1,135 @@
+{
+  "skill_name": "don-norman",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-mobile-flat-capture-veto",
+      "prompt": "Audit this React mobile expense capture form (mobile_consumer_capture). It uses a transparent borderless text button ('Submit') styled identically to body copy, two 20x20px icon-only navigation buttons with hover-only title tooltips, a swipe-left-to-delete gesture on list rows with no visible button, and an onSubmit handler that displays 'Error 422: Invalid input' at the top while calling setPhone('') and setAmount('') to clear the fields.",
+      "expected_trigger": true,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03",
+          "veto-04"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-03"
+        ]
+      },
+      "assertions": [
+        "output.expected_trigger == true",
+        "output.regime == 'mobile_consumer_capture'",
+        "output.stance == 'BLOCK'",
+        "output.score <= 49",
+        "output.triggered_vetos includes all of ['veto-01', 'veto-02', 'veto-03', 'veto-04']",
+        "output.failed_filters includes 'flt-01' and 'flt-02'",
+        "output.text does not contain clichés /\\b(clean|intuitive|modern|user-centered)\\b/i",
+        "output.patch preserves controlled input state on error and provides visible single-pointer delete button"
+      ]
+    },
+    {
+      "id": "eval-02-onboarding-conditional-revise",
+      "prompt": "Review this landing page signup step (landing_onboarding_conversion). Buttons have solid blue fills with 7:1 text contrast, 48px height, <=80ms :active feedback, and role='status' announcements; inputs have persistent <label htmlFor>, inputMode attributes, and errors preserve user input with plain-language inline advice bound via aria-invalid='true' and aria-errormessage; there are no unlabeled icons, gestures, or false affordances. However, the primary 'Continue' button uses native disabled={!isValid} with zero explanation of which requirements remain unmet, and the email field renders a red error immediately on the first keystroke before blur.",
+      "expected_trigger": true,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 70,
+        "triggered_vetos": [
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-03"
+        ],
+        "failed_signals": []
+      },
+      "assertions": [
+        "output.expected_trigger == true",
+        "output.regime == 'landing_onboarding_conversion'",
+        "output.stance == 'REVISE'",
+        "output.hard_veto_count == 0",
+        "output.triggered_vetos includes 'veto-05' (conditional_block)",
+        "output.failed_filters includes 'flt-03'",
+        "output.score == 70 (100 - 15 [veto-05] - 15 [flt-03])",
+        "output.text does not contain clichés /\\b(clean|intuitive|modern|user-centered)\\b/i"
+      ]
+    },
+    {
+      "id": "eval-03-saas-settings-mapping-approve",
+      "prompt": "Audit this B2B SaaS billing alert configuration panel (saas_b2b_intensive). Each notification channel card co-locates its persistent label, destination address, and a 44px role='switch' toggle with distinct filled/outlined states (>=4.5:1 contrast, >=1.5px border); no unlabeled icons, hidden gestures, form resets, or false affordances exist. Toggling updates state optimistically in <80ms with aria-busy during network sync, announces outcomes in a role='status' aria-live='polite' region, and rolls back with an inline Retry button on failure. A 'Pause all channels' button uses aria-disabled with an inline explanation when already paused, and otherwise executes immediately with an 8-second 'Undo pause all' banner instead of a confirmation modal.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "APPROVE",
+        "score_cap": 100,
+        "expected_score": 100,
+        "triggered_vetos": [],
+        "failed_filters": [],
+        "failed_signals": []
+      },
+      "assertions": [
+        "output.expected_trigger == true",
+        "output.regime == 'saas_b2b_intensive'",
+        "output.stance == 'APPROVE'",
+        "output.score >= 82",
+        "output.hard_veto_count == 0",
+        "output.conditional_block_count == 0",
+        "output.verifies Level 1/2 natural spatial mapping, <=100ms feedback, ARIA status emission, and Undo over confirmation modal",
+        "output.text does not contain clichés /\\b(clean|intuitive|modern|user-centered)\\b/i"
+      ]
+    },
+    {
+      "id": "eval-04-out-of-universe-ai-desktop-ide",
+      "prompt": "Audit our AI-native desktop code IDE (ai_native_desktop_ide) designed for professional engineers writing code 6 hours daily. Commands execute via Cmd+K command palette, single-key vim motions, and inline AI diff accept/reject shortcuts (Tab / Esc) with minimal toolbar chrome so 90% of the viewport stays dedicated to source code and terminal output.",
+      "expected_trigger": false,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "karri-saarinen"
+      },
+      "assertions": [
+        "output.expected_trigger == false",
+        "output.status == 'OUT_OF_UNIVERSE'",
+        "output.score_emitted == false",
+        "output.handoff_designers contains 'karri-saarinen' and 'jef-raskin'",
+        "output.handoff_designers contains only valid roster slugs",
+        "output.does_not_penalize missing visible mouse buttons for Cmd+K or single-key IDE shortcuts"
+      ]
+    },
+    {
+      "id": "eval-05-out-of-universe-dense-telemetry-wall",
+      "prompt": "Evaluate this real-time SRE observability monitor (analytics_dense_telemetry) rendered on a 4K operations screen displaying 48 concurrent microservice latency sparklines, p50/p95/p99 histograms, and error-budget heatmaps side by side without card borders, drop shadows, or 48px touch padding between charts.",
+      "expected_trigger": false,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "edward-tufte"
+      },
+      "assertions": [
+        "output.expected_trigger == false",
+        "output.status == 'OUT_OF_UNIVERSE'",
+        "output.score_emitted == false",
+        "output.handoff_designers contains 'edward-tufte'",
+        "output.handoff_designers contains only valid roster slugs",
+        "output.does_not_apply mobile touch-target or flat-UI button vetos to read-only multi-series telemetry plots"
+      ]
+    }
+  ]
+}

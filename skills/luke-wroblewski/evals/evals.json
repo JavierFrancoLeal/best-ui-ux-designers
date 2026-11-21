@@ -1,0 +1,126 @@
+{
+  "skill_name": "luke-wroblewski",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-checkout-wall-and-placeholder-bloat",
+      "prompt": "Audit this responsive e-commerce checkout TSX component (tested at 390px and 1280px). Users must create an account and confirm a password before entering shipping or payment details. The form uses a 2-column CSS grid with 18 placeholder-only generic <input type=\"text\"> fields styled at font-size: 13px and height: 32px with zero <label> tags, a 32px-tall blue Reset button visually identical to Submit Order, and validation that runs exclusively inside onSubmit while clearing card and password inputs on error.",
+      "expected_trigger": true,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03",
+          "veto-04"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02",
+          "flt-03",
+          "flt-04",
+          "flt-05"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-03",
+          "sig-04",
+          "sig-05",
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Triggers all four hard vetos (veto-01, veto-02, veto-03, veto-04), fails filters flt-01..flt-05 and signals sig-01..sig-06, enforcing score_cap 49, floored score 0, and posture BLOCK.",
+        "Requires Guest Checkout as the primary unauthenticated path and moves optional password creation to post-purchase confirmation.",
+        "Refactors layout to a single vertical column with <=12 visible elements, persistent plain-weight top-aligned <label htmlFor> elements, >=44px touch targets, and computed input font-size >= 16px.",
+        "Replaces generic type='text' inputs with WHATWG type, inputmode, autocomplete, and enterkeyhint attributes.",
+        "Deletes the Reset button, implements onBlur inline validation with live keystroke error clearing, and preserves 100% of entered values on submit error."
+      ]
+    },
+    {
+      "id": "eval-02-mobile-capture-top-left-and-selects",
+      "prompt": "Review this 390px mobile quick-reservation capture screen. It uses a single-column layout with 6 visible elements, guest booking without registration, persistent plain-weight top-aligned <label htmlFor> elements, font-size: 16px inputs with valid WHATWG tel/email type, inputmode, autocomplete, and enterkeyhint attributes, zero Reset buttons, and onBlur inline validation that clears errors live while preserving values. However, its 4 core destinations (Search, Trips, Alerts, Profile) are hidden inside a 32x32px top-left hamburger button, the primary Book button is a 36x36px control in the top-left header, and cabin class (3 options) plus traveler count (1-4) use native <select> dropdowns.",
+      "expected_trigger": true,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 63,
+        "triggered_vetos": [
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-06",
+          "sig-07"
+        ]
+      },
+      "assertions": [
+        "Identifies zero hard vetos and triggers conditional_block veto-05 (-15), failed filter flt-04 (-15), sig-06 (-5), and sig-07 (-2) for exact score 63 and posture REVISE.",
+        "Moves the primary Book CTA into a full-width >=44px bottom thumb-zone action bar.",
+        "Promotes the 4 hidden destinations from the top-left hamburger drawer into a persistent bottom tab bar with >=44x44px hit targets.",
+        "Replaces the 3-option cabin <select> with a single-tap segmented control (role='radiogroup') and the 1-4 traveler <select> with a +/- stepper."
+      ]
+    },
+    {
+      "id": "eval-03-gradual-engagement-compliant-mobile-checkout",
+      "prompt": "Audit this 390px mobile express checkout screen. Shoppers purchase directly as guests with optional password setup shown only on the post-order confirmation screen. The form renders 10 visible elements in a single vertical column (including one atomic Expiration/CVV row), plain-weight persistent top-aligned <label htmlFor> tags, 16px inputs with WHATWG type/autocomplete/inputmode/enterkeyhint (numeric inputmode for card/postal/CVV and disabled autocapitalize/autocorrect on email), onBlur and format-completion validation with live keystroke error clearance, aria-invalid/aria-describedby bindings, and full value preservation, a 3-option segmented control for shipping speed, a full-width 48px primary Pay button anchored in the lower thumb band, a 4-item persistent bottom tab bar (>=44x44px targets, >=8px gaps), and zero Reset buttons.",
+      "expected_trigger": true,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "APPROVE",
+        "score_cap": 100,
+        "expected_score": 100,
+        "triggered_vetos": [],
+        "failed_filters": [],
+        "failed_signals": []
+      },
+      "assertions": [
+        "Confirms zero triggered vetos, zero failed filters, and zero failed signals, yielding exact score 100 and posture APPROVE.",
+        "Recognizes the Expiration + CVV row as a permitted atomic pair within a strict single-column capture flow.",
+        "Verifies guest-first gradual engagement, persistent top labels, WHATWG input semantics, non-premature inline validation, and thumb-zone ergonomics."
+      ]
+    },
+    {
+      "id": "eval-04-oou-ai-desktop-ide-inspector",
+      "prompt": "Apply Luke Wroblewski's mobile-first rules to our 1440px desktop AI-native code and UI editor workspace. It currently renders a multi-pane canvas, a persistent left file/layer tree, an inline diff viewer, and a right properties inspector with 28 compact 28px-tall numeric controls. Should we collapse it to a single column with <=14 controls and 44x44px touch targets?",
+      "expected_trigger": false,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "rasmus-andersson"
+      },
+      "assertions": [
+        "Classifies the surface as out-of-universe ai_native_desktop_ide and refuses to apply mobile-first <=14-element or 44px touch penalties.",
+        "Returns posture HANDOFF with counterweight_handoff set strictly to rasmus-andersson.",
+        "Explains that single-column chunking and oversized touch chrome destroy multi-pane spatial editing and dense precision inspectors."
+      ]
+    },
+    {
+      "id": "eval-05-oou-telemetry-dashboard-small-multiples",
+      "prompt": "Audit our 1920px desktop SRE observability console showing 16 synchronized p99 latency and error-rate small-multiple charts alongside a dense multi-column host telemetry table for live incident triage. Should we use Luke Wroblewski's progressive disclosure and single-column simplification to cut visible metrics down to 12 items?",
+      "expected_trigger": false,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "edward-tufte"
+      },
+      "assertions": [
+        "Classifies the surface as out-of-universe analytics_dense_telemetry and aborts form-budget scoring.",
+        "Returns posture HANDOFF with counterweight_handoff set strictly to edward-tufte.",
+        "Explains that hiding synchronized telemetry series behind mobile progressive disclosure breaks synoptic visual comparison and degrades data-ink density."
+      ]
+    }
+  ]
+}

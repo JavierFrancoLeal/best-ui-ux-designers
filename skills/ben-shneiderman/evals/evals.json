@@ -1,0 +1,136 @@
+{
+  "skill_name": "ben-shneiderman",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01",
+      "prompt": "Audit our Electron AI coding IDE component `src/renderer/AgentRunner.tsx`. Right now, when a developer enters a refactor prompt and clicks Run, the IPC handler immediately rewrites 14 TypeScript files and executes `prisma migrate deploy` in the background, printing only a final chat summary with no diff preview, no cancel button, no undo snapshot, and no execution log. Give us a verdict and a refactored TSX pattern.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02"
+        ],
+        "failed_filters": [
+          "flt-02",
+          "flt-03"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02"
+        ]
+      },
+      "assertions": [
+        "Triggers the ben-shneiderman skill and classifies regime as ai_native_desktop_ide",
+        "Emits a BLOCK verdict with final numeric score <= 49 due to hard_veto cap",
+        "Explicitly flags veto-01 (opaque_autonomous_state_mutation) and veto-02 (irreversible_mutation_without_undo_or_audit_trail)",
+        "Refactored TSX implements an explicit preview_ready checkpoint state before executing irreversible database migrations while avoiding unnecessary modals on read-only steps",
+        "Refactored TSX includes an AbortController cancel control, an Undo rollback mechanism bound to Cmd/Ctrl+Z, and an append-only audit trail recording actor, timestamp, and targets",
+        "Contains zero banned cliché terms (clean, intuitive, modern, user-centered)"
+      ]
+    },
+    {
+      "id": "eval-02",
+      "prompt": "Our observability console displays 120,000 microservice latency events in React, but on-call engineers complain they keep hitting empty pages and missing regional spikes. Currently the page opens directly on a 25-row paginated HTML table with a blank Lucene text box and an Apply Filters button that triggers a 650 ms server query. How should we restructure this screen under Shneiderman's visualization principles?",
+      "expected_trigger": true,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-03",
+          "veto-04"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-03",
+          "sig-04",
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Triggers the ben-shneiderman skill and classifies regime as analytics_dense_telemetry",
+        "Emits a BLOCK verdict citing veto-03 (blind_search_without_collection_overview) and veto-04 (blocking_filter_latency_over_100ms)",
+        "Specifies an initial aggregate Overview component (such as a space-filling treemap or distribution view) conserving total event count before row-level records",
+        "Removes the blocking Apply button gate and enforces <= 100 ms dynamic filter updates (or <= 500 ms progressive fallback) with live match counts",
+        "Implements tight coupling that disables zero-hit facet options (disabled / aria-disabled) prior to click and preserves overview context during details-on-demand inspection",
+        "Includes filter history undo and reproducible query extraction without using banned cliché terms"
+      ]
+    },
+    {
+      "id": "eval-03",
+      "prompt": "We are reviewing a B2B treasury compliance workbench (`ComplianceQueue.tsx`) where analysts open suspicious wire alerts in Tab A, manually copy 14-digit transaction IDs and customer risk codes into a separate bulk-freeze modal on Tab B, and click Confirm Freeze with no way to undo an accidental freeze and no record of which analyst triggered it. Evaluate the interaction risks and prescribe concrete state and DOM fixes.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 5,
+        "triggered_vetos": [
+          "veto-02",
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-03",
+          "flt-05"
+        ],
+        "failed_signals": [
+          "sig-02",
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Triggers the ben-shneiderman skill even though the prompt does not mention Shneiderman by name, classifying regime as saas_b2b_intensive",
+        "Emits a BLOCK verdict citing veto-02 (irreversible_mutation_without_undo_or_audit_trail) and veto-05 (cross_screen_memory_burden_and_syntax_wall)",
+        "Diagnoses working-memory violation (sig-06 / heur-10) from manual 14-digit ID transcription across disconnected tabs",
+        "Prescribes direct object selection bound to an in-context split detail/action pane, an explicit preview-before-commit summary, reversible rollback/compensating unfreeze, and immutable actor-attributed audit logs",
+        "Contains zero banned cliché terms (clean, intuitive, modern, user-centered)"
+      ]
+    },
+    {
+      "id": "eval-04",
+      "prompt": "We need to increase visitor-to-free-trial conversion on our AI analytics SaaS marketing landing page (`src/pages/LandingPage.tsx`). Please redesign our above-the-fold hero headline, 3-tier pricing cards, social proof logos, and 2-step email signup CTA funnel.",
+      "expected_trigger": false,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Does not trigger ben-shneiderman scoring or apply HCAI/Mantra vetoes to the marketing landing page",
+        "Explicitly identifies landing_onboarding_conversion as an out_of_universe regime",
+        "Explains the falsifiable structural harm of imposing analytical controls or confirmation barriers on a conversion funnel",
+        "Routes the task to a valid roster counterweight slug (luke-wroblewski or dieter-rams)"
+      ]
+    },
+    {
+      "id": "eval-05",
+      "prompt": "Help us redesign our 390x844 iOS consumer expense-receipt scanner app (`ReceiptCaptureScreen.tsx`) so users can snap a photo one-handed with their thumb in under 2 seconds and swipe through recent receipt cards while walking out of a coffee shop.",
+      "expected_trigger": false,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Does not trigger ben-shneiderman scoring or force overview-first desktop analytics panels onto the 390x844 mobile capture screen",
+        "Explicitly identifies mobile_consumer_capture as an out_of_universe regime",
+        "Explains the structural viewport and latency harm of applying desktop direct-manipulation control panels to one-handed mobile capture",
+        "Routes the task to a valid roster counterweight slug (luke-wroblewski or rauno-freiberg)"
+      ]
+    }
+  ]
+}

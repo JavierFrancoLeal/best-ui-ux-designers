@@ -1,0 +1,138 @@
+{
+  "skill_name": "karri-saarinen",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01",
+      "prompt": "Audit and refactor this React TSX CreateTicketModal for our desktop B2B engineering issue tracker. Right now users click '+ New Ticket', pick mandatory un-defaulted Project, IssueType, Component, and Priority dropdowns, type a title, click Submit, and wait 1.4s on a disabled spinner while await fetch('/api/tickets', { method: 'POST' }) resolves. The modal also uses a 350ms CSS fade-and-scale open animation and has no keyboard shortcuts.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03"
+        ],
+        "failed_filters": [
+          "flt-01"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-03",
+          "sig-04"
+        ]
+      },
+      "assertions": [
+        "Verdict stance equals 'BLOCK'",
+        "Computed score S is <= 49 and >= 0 with explicit Phase A deduction arithmetic shown",
+        "Flags hard_veto IDs 'veto-01', 'veto-02', and 'veto-03'",
+        "Refactored TSX removes blocking await before local state mutation and includes deterministic rollback on server rejection",
+        "Refactored TSX binds single-key 'C' guarded against INPUT/TEXTAREA/SELECT/contenteditable/isComposing",
+        "Refactored TSX pre-populates opinionated defaults leaving <= 1 manually typed mandatory field (title) with autofocus and Cmd/Ctrl+Enter submit",
+        "Refactored TSX sets transition: 'none' (0ms) on the composer",
+        "Output contains zero banned clichés ('clean', 'intuitive', 'modern', 'user-centered')"
+      ]
+    },
+    {
+      "id": "eval-02",
+      "prompt": "Review our AI-native desktop IDE Pull Request Triage console (TSX + CSS). Currently, AI review suggestions appear only inside a free-text side chat panel without entity bindings or inline approve/revert buttons. Engineers triage 150 PR rows/day using a nested mouse-only 'Actions' dropdown menu (no keyboard shortcuts, no <kbd> hints, no submenu safe zone), rows animate background-color over 300ms on hover, and components hardcode #1e1e24 backgrounds with 2px solid #444 borders and dark-mode box-shadows.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 8,
+        "triggered_vetos": [
+          "veto-03",
+          "veto-04",
+          "veto-05"
+        ],
+        "failed_filters": [],
+        "failed_signals": [
+          "sig-02",
+          "sig-04",
+          "sig-05",
+          "sig-06",
+          "sig-07"
+        ]
+      },
+      "assertions": [
+        "Verdict stance equals 'BLOCK' and score S <= 49",
+        "Flags 'veto-03' (hard_veto), 'veto-04' (conditional_block), and 'veto-05' (conditional_block)",
+        "Flags 'sig-07' (deterministic_agent_workbench_framing) and prescribes binding AI mutations to typed entity IDs with preview and 1-action approve/revert controls",
+        "Prescribes 0ms transition-duration on 150x/day list rows and Cmd/Ctrl+K palette",
+        "Includes dynamic CSS clip-path triangular safe-zone remediation for cascading submenus and >= 90% inline <kbd> signifiers",
+        "Replaces hardcoded hex and 2px borders with programmatic LCH/OKLCH tokens and <= 1px hairlines",
+        "Output contains zero banned clichés ('clean', 'intuitive', 'modern', 'user-centered')"
+      ]
+    },
+    {
+      "id": "eval-03",
+      "prompt": "Audit this almost-ready React issue list view for our B2B engineering workspace. It already executes all mutations locally in 25ms via IndexedDB with snapshot rollback, pre-fills team and status defaults on 'C', uses 0ms transitions on list hovers and the Cmd+K palette, compiles styles with build-time StyleX LCH tokens and 1px borders, and binds A, I, L, S, P shortcuts. However, we noticed two remaining gaps in the code: (1) the global keydown handler does not check document.activeElement or event.isComposing so typing 'c' inside an inline comment box opens the create modal, and (2) the right-click contextual menu omits <kbd> shortcut hints and its cascading Priority submenu closes whenever users move diagonally.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 65,
+        "triggered_vetos": [
+          "veto-04"
+        ],
+        "failed_filters": [
+          "flt-03"
+        ],
+        "failed_signals": [
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Verdict stance equals 'REVISE' (zero hard_veto triggers)",
+        "Computed score equals 65 (100 - 15 [flt-03] - 15 [veto-04 conditional_block] - 5 [sig-05])",
+        "Flags 'flt-03', 'veto-04', and 'sig-05' without falsely triggering 'veto-01', 'veto-02', or 'veto-03'",
+        "Patch adds INPUT/TEXTAREA/SELECT/isContentEditable/isComposing isolation guard to the global keydown listener",
+        "Patch renders inline <kbd> shortcut labels inside contextual [role='menuitem'] items and mounts a CSS clip-path triangular MouseSafeArea for diagonal submenu traversal"
+      ]
+    },
+    {
+      "id": "eval-04",
+      "prompt": "Design the primary mobile receipt-capture screen for a consumer personal-finance iOS and Android app used one-handed while standing in checkout lines. Users snap a photo of a paper receipt, pick a spending category with their thumb, and confirm the amount on a 390px viewport.",
+      "expected_trigger": false,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Skill explicitly declines to score the artifact under the Karri Saarinen rubric and declares 'OUT_OF_UNIVERSE' for 'mobile_consumer_capture'",
+        "Does NOT emit a 0-100 Karri Saarinen audit score or mandate Cmd+K / single-key shortcuts",
+        "Cites the structural mismatch of coarse touch pointers / one-handed thumb ergonomics",
+        "Routes explicitly to valid roster counterweight slug 'luke-wroblewski'"
+      ]
+    },
+    {
+      "id": "eval-05",
+      "prompt": "Near-miss check: Redesign our desktop B2B Kubernetes observability and APM telemetry dashboard for SREs. The single viewport must display 18 synchronized multivariate time-series line charts, P50/P95/P99 latency distribution heatmaps, pod CPU sparklines, and custom PromQL slice comparisons across 12 microservices.",
+      "expected_trigger": false,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "edward-tufte"
+      },
+      "assertions": [
+        "Skill explicitly declines to apply the Karri Saarinen transactional CRUD rubric and declares 'OUT_OF_UNIVERSE' for 'analytics_dense_telemetry'",
+        "Correctly distinguishes desktop B2B developer software from high-density quantitative telemetry visualization",
+        "Does NOT recommend stripping custom analytical views into an opinionated ticket tracker",
+        "Routes explicitly to valid roster counterweight slug 'edward-tufte'"
+      ]
+    }
+  ]
+}

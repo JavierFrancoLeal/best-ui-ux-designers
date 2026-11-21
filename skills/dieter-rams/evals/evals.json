@@ -1,0 +1,125 @@
+{
+  "skill_name": "dieter-rams",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01-ai-slop-dark-pattern-pricing",
+      "prompt": "Audit this React + Tailwind SaaS pricing page before launch: it uses a `bg-gradient-to-r from-indigo-500 via-purple-600 to-fuchsia-500` hero with `bg-clip-text text-transparent` heading, a `blur-3xl` purple ambient orb, a `useEffect` countdown timer resetting from 14:59 every reload, a static 'AI-Powered 10x Engine' badge with sparkle icon, a pre-checked +$29/mo add-on, two competing gradient CTA buttons, and a 'No thanks, I prefer losing revenue' dismiss link.",
+      "expected_trigger": true,
+      "expected_scope": "landing_onboarding_conversion",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03",
+          "veto-04"
+        ],
+        "failed_filters": [
+          "flt-02",
+          "flt-03"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-03",
+          "sig-04",
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Activates the dieter-rams skill and classifies scope as landing_onboarding_conversion.",
+        "Flags veto-01 (fake countdown), veto-02 (pre-checked upsell + confirmshaming), veto-03 (indigo-purple-fuchsia gradients + bg-clip-text + blur orb), and veto-04 (unbacked AI-Powered badge) as hard_veto.",
+        "Applies Phase A rubric: -35 per hard_veto, caps final score at <= 49 (floored at 0), and outputs stance BLOCK.",
+        "Uses only falsifiable DOM/CSS/state predicates with zero subjective design clichés.",
+        "Provides exact CSS/JSX remediation using achromatic surfaces and a single functional primary CTA."
+      ]
+    },
+    {
+      "id": "eval-02-b2b-saas-glassmorphism-and-nested-cards",
+      "prompt": "Review our B2B invoice-management workspace TSX shell: it has 48px single header and 220px navigation rail (19.8% chrome at 1440x900), 90% achromatic neutral surfaces, 1 primary CTA, zero purple gradients, zero fake timers, and zero AI badges, EXCEPT it applies `backdrop-filter: blur(16px)` translucent glassmorphism to two non-overlay summary panels and wraps invoice rows inside nested bordered cards (border depth = 2).",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "REVISE",
+        "score_cap": 100,
+        "expected_score": 65,
+        "triggered_vetos": [
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Activates the dieter-rams skill and classifies scope as saas_b2b_intensive.",
+        "Reports zero hard_veto triggers while flagging veto-05 (conditional_block), flt-04 (nested bordered depth >= 2), and sig-05 (high).",
+        "Computes exact score 100 - 15 - 15 - 5 = 65 and outputs stance REVISE.",
+        "Confirms viewport chrome (19.8%) passes flt-01 (<= 35%) and achromatic dominance (90%) passes flt-02 (>= 85%).",
+        "Includes the don-norman signifier preservation check confirming >= 3.0:1 interactive boundary contrast."
+      ]
+    },
+    {
+      "id": "eval-03-passing-honest-b2b-billing-settings",
+      "prompt": "Audit this B2B SaaS Billing Settings page: 48px single top bar and 220px navigation rail (19.8% viewport chrome at 1440x900), matte achromatic canvas (#F5F5F4, OKLCH C=0.0013) and white surface panels (#FFFFFF) covering 92% of viewport, flat table without nested bordered cards, one primary execution button (#E5A800 with 1px #141413 border, 8.72:1 text contrast), one red danger button (#B82E1E) for one-click subscription cancellation matching the 1-step signup flow, and zero decorative gradients or AI labels.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "APPROVE",
+        "score_cap": 100,
+        "expected_score": 100,
+        "triggered_vetos": [],
+        "failed_filters": [],
+        "failed_signals": []
+      },
+      "assertions": [
+        "Activates the dieter-rams skill and classifies scope as saas_b2b_intensive.",
+        "Verifies 0 hard_veto, 0 conditional_block, 0 failed hard_filters, and 0 failed signals.",
+        "Outputs final score >= 82 (100/100) and stance APPROVE.",
+        "Explicitly validates that the 1px #141413 border on the #E5A800 primary CTA satisfies WCAG 2.2 SC 1.4.11 (>= 3.0:1 non-text contrast) and the don-norman signifier preservation guardrail.",
+        "Uses only measurable predicates with zero banned clichés."
+      ]
+    },
+    {
+      "id": "eval-04-out-of-universe-analytics-dense-telemetry",
+      "prompt": "Apply Dieter Rams's subtraction rules to redesign our real-time Kubernetes cluster observability and financial order-book telemetry dashboard displaying 24 simultaneous sparklines, multi-threshold latency heatmaps, and live anomaly correlations across 8 color-coded microservices.",
+      "expected_trigger": false,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "edward-tufte"
+      },
+      "assertions": [
+        "Does not run full Rams penalty scoring; aborts at Step 1 Regime Gate with stance OUT_OF_UNIVERSE.",
+        "Identifies the target regime explicitly as analytics_dense_telemetry.",
+        "Names edward-tufte and ben-shneiderman as the mandatory counterweight skills from the valid roster.",
+        "Explains the falsifiable structural harm (destruction of multivariate small multiples and overview/zoom/filter workflows)."
+      ]
+    },
+    {
+      "id": "eval-05-out-of-universe-ai-native-desktop-ide",
+      "prompt": "Our desktop AI coding IDE has a file tree, main editor, side-by-side multi-file diff viewer, integrated test terminal, and an inline agent execution trace rail. Use Dieter Rams to strip auxiliary panels down below 35% of the screen so the workspace looks minimal.",
+      "expected_trigger": false,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "agentic-flow-architect"
+      },
+      "assertions": [
+        "Does not execute Rams scoring; aborts at Step 1 Regime Gate with stance OUT_OF_UNIVERSE.",
+        "Identifies the target regime explicitly as ai_native_desktop_ide.",
+        "Hands off strictly to valid roster slugs (agentic-flow-architect, jef-raskin, karri-saarinen) without inventing out-of-roster slugs.",
+        "Explains why serializing multi-pane verification degrades engineering review accuracy and cognitive load."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "skill_name": "jef-raskin",
+  "schema_version": "1.0.0",
+  "evals": [
+    {
+      "id": "eval-01",
+      "prompt": "Audit this Electron/React AI coding IDE composer component. Users toggle between Plan mode (read-only) and Agent mode (edits workspace files) using Shift+Tab or a small bottom-left select dropdown, then press Enter in the same textarea to submit. Deleting a thread opens a blocking 'Are you sure?' alertdialog, and the prompt textarea uses only useState('') so text clears on panel switch.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-01",
+          "veto-02",
+          "veto-03"
+        ],
+        "failed_filters": [
+          "flt-01",
+          "flt-02",
+          "flt-03"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-02",
+          "sig-03"
+        ]
+      },
+      "assertions": [
+        "Triggers skill jef-raskin and cites ./DESIGN.md schema rules without subjective clichés (no 'clean', 'intuitive', 'modern', 'user-centered').",
+        "Triggers veto-01 (silent_plan_to_agent_mode_trap), veto-02 (volatile_draft_loss_on_reload_or_error), and veto-03 (blocking_confirm_on_reversible_delete).",
+        "Applies hard_veto scoring rubric (-35 each, capped at <=49, floored at 0) and outputs Verdict: BLOCK.",
+        "Provides KLM-GOMS operator comparison showing elimination of H (0.40s) and P (1.10s) shuttling via spring-loaded quasimodal dispatch (e.g., Enter = read-only, Cmd/Ctrl+Enter = repo mutation).",
+        "Refactors code to include continuous localStorage/IndexedDB draft persistence (<=500ms), automatic checkpoint/Undo stack (Cmd/Ctrl+Z), keyboard Delete/Backspace support, and non-blocking role='status' Undo toast replacing the blocking alertdialog."
+      ]
+    },
+    {
+      "id": "eval-02",
+      "prompt": "Review our high-volume B2B insurance claims desktop web app where 120-ticket/day adjusters must click an 'Edit' toolbar button to unlock notes, type updates, click 'Save Changes', and dismiss an 'Unsaved changes: Discard?' modal if they click Back. Frequent status actions are buried in a 3-level cascading dropdown that reorders items by recent clicks.",
+      "expected_trigger": true,
+      "expected_scope": "saas_b2b_intensive",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 0,
+        "triggered_vetos": [
+          "veto-02",
+          "veto-04",
+          "veto-05"
+        ],
+        "failed_filters": [
+          "flt-02",
+          "flt-04"
+        ],
+        "failed_signals": [
+          "sig-02",
+          "sig-04",
+          "sig-05"
+        ]
+      },
+      "assertions": [
+        "Triggers skill jef-raskin within primary regime saas_b2b_intensive.",
+        "Identifies veto-02 (volatile draft risk), veto-04 (forced_edit_mode_and_manual_save_lock), and veto-05 (deep_nested_menu_for_frequent_command + adaptive menu reordering violating flt-04/sig-05).",
+        "Outputs Verdict: BLOCK (if volatile draft loss confirmed) or REVISE (<=81 if strictly conditional blocks), respecting base-100 rubric math.",
+        "Computes explicit KLM-GOMS time savings from removing Edit and Save mouse round-trips (4H + 2P + 2K + 2M = 6.90s UI overhead saved per ticket) and cites Hick's Law to flatten the 3-level adaptive menu into a static ordered or <=250ms incremental-search list.",
+        "Refactors into modeless direct inline editing with continuous debounced autosave, offline localStorage fallback, and Undo revision history."
+      ]
+    },
+    {
+      "id": "eval-03",
+      "prompt": "Refactor our desktop IDE symbol-navigation and command toolbar. Currently, developers lift their hand to click unlabeled 24px SVG icons 600px away in the top bar and have three conflicting shortcuts plus a sticky 'Refactor Tool' verb-first mode where subsequent clicks overwrite unrelated functions until Escape is pressed.",
+      "expected_trigger": true,
+      "expected_scope": "ai_native_desktop_ide",
+      "expected_output": {
+        "in_universe": true,
+        "posture": "BLOCK",
+        "score_cap": 49,
+        "expected_score": 28,
+        "triggered_vetos": [
+          "veto-01"
+        ],
+        "failed_filters": [
+          "flt-01"
+        ],
+        "failed_signals": [
+          "sig-01",
+          "sig-04",
+          "sig-05",
+          "sig-06"
+        ]
+      },
+      "assertions": [
+        "Triggers skill jef-raskin within primary regime ai_native_desktop_ide.",
+        "Flags sig-01/heur-06 (sticky verb-first tool mode requiring noun-verb conversion), sig-04/heur-04 (keyboard-pointer homing tax H+P+K+H = 2.10s), sig-05/heur-10 (non-monotonic duplicate shortcuts), and sig-06/heur-09 (unlabeled domain-specific SVG buttons).",
+        "Applies Fitts's Law (a=50ms, b=150ms -> ~755.1 ms for D=600px, S=24px) and KLM-GOMS to justify replacing distant icon clicks with home-row incremental search (<=250ms match response) and visible text labels on domain controls.",
+        "Eliminates the sticky verb-first mode in favor of noun-verb selection-first execution with zero explicit Cancel click."
+      ]
+    },
+    {
+      "id": "eval-04",
+      "prompt": "Design a one-handed iOS and Android mobile receipt-capture screen for consumer commuters snapping expense photos on a train, optimizing bottom-sheet camera controls and thumb-zone tap targets.",
+      "expected_trigger": false,
+      "expected_scope": "mobile_consumer_capture",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "luke-wroblewski"
+      },
+      "assertions": [
+        "Does NOT run jef-raskin desktop/KLM keyboard scoring rubric; explicitly declares OUT_OF_UNIVERSE for mobile_consumer_capture.",
+        "Explains the structural failure mode (bs-02): touch-only smartphones lack physical keyboards for spring-loaded quasimodes and home-row monotony.",
+        "Routes the task explicitly to valid roster counterweight luke-wroblewski (and optionally don-norman for mobile signifiers)."
+      ]
+    },
+    {
+      "id": "eval-05",
+      "prompt": "Audit our read-only SRE datacenter observability wall displaying 40 simultaneous p99 latency, CPU, and packet-loss sparklines across global clusters so on-call engineers can spot correlated outages at a glance without typing.",
+      "expected_trigger": false,
+      "expected_scope": "analytics_dense_telemetry",
+      "expected_output": {
+        "in_universe": false,
+        "posture": "HANDOFF",
+        "counterweight_handoff": "edward-tufte"
+      },
+      "assertions": [
+        "Does NOT trigger jef-raskin desktop text-editing heuristics; explicitly declares OUT_OF_UNIVERSE for analytics_dense_telemetry (near-miss desktop screen with >10:1 read-to-write ratio).",
+        "Explains why Raskin's single-locus serial interaction model does not govern parallel pre-attentive visual anomaly scanning across multi-series telemetry.",
+        "Routes the task explicitly to valid roster counterweights edward-tufte and ben-shneiderman."
+      ]
+    }
+  ]
+}
