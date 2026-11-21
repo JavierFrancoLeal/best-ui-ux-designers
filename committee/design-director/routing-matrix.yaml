@@ -1,0 +1,153 @@
+schema_version: "1.0.0"
+suite_id: "ui-ux"
+director_slug: "design-director"
+
+barbell_roster:
+  lindy_anchor:
+    - "dieter-rams"
+    - "don-norman"
+    - "edward-tufte"
+    - "jef-raskin"
+    - "ben-shneiderman"
+    - "susan-kare"
+  convex_frontier:
+    - "bret-victor"
+    - "karri-saarinen"
+    - "luke-wroblewski"
+    - "rasmus-andersson"
+    - "rauno-freiberg"
+    - "agentic-flow-architect"
+
+constraints:
+  exact_regime_count: 5
+  base_active_designers_per_regime: 4
+  base_out_of_universe_per_regime: 8
+  max_individual_weight: 0.35
+  lindy_balance_min: 0.40
+  lindy_balance_max: 0.60
+  weight_sum_target: 1.00
+  weight_sum_tolerance: 1.0e-9
+
+embedded_ai_override:
+  enabled: true
+  applies_to_regimes:
+    - "saas_b2b_intensive"
+    - "mobile_consumer_capture"
+    - "analytics_dense_telemetry"
+    - "landing_onboarding_conversion"
+  injected_designer: "agentic-flow-architect"
+  injected_weight: 0.15
+  base_weight_scale_factor: 0.85
+  trigger_condition: "Artifact in R2-R5 contains any LLM API/IPC call, streaming inference response handler, prompt input, or AI-labeled UI trigger."
+
+unconditional_auditors:
+  - "auditor-cognitive-fatigue"
+  - "auditor-latency-broken-states"
+  - "auditor-physics-accessibility"
+  - "auditor-agentic-anti-slop"
+
+regimes:
+  ai_native_desktop_ide:
+    code: "R1"
+    label: "AI-Native App / Desktop IDE / Agentic Tool"
+    lindy_ratio: 0.45
+    convex_ratio: 0.55
+    active_weights:
+      agentic-flow-architect: 0.35
+      ben-shneiderman: 0.25
+      jef-raskin: 0.20
+      bret-victor: 0.20
+    out_of_universe:
+      - "dieter-rams"
+      - "don-norman"
+      - "edward-tufte"
+      - "susan-kare"
+      - "karri-saarinen"
+      - "luke-wroblewski"
+      - "rasmus-andersson"
+      - "rauno-freiberg"
+    arbitration_priority: "Permit multi-step autonomy only with pre-turn checkpoints, live trajectory visibility, and atomic Cmd/Ctrl+Z rollback; enforce 0 ms on Cmd+K and keyboard loops."
+
+  saas_b2b_intensive:
+    code: "R2"
+    label: "Daily Intensive B2B SaaS Workbench"
+    lindy_ratio: 0.40
+    convex_ratio: 0.60
+    active_weights:
+      karri-saarinen: 0.35
+      rauno-freiberg: 0.25
+      jef-raskin: 0.20
+      dieter-rams: 0.20
+    out_of_universe:
+      - "don-norman"
+      - "edward-tufte"
+      - "ben-shneiderman"
+      - "susan-kare"
+      - "bret-victor"
+      - "luke-wroblewski"
+      - "rasmus-andersson"
+      - "agentic-flow-architect"
+    arbitration_priority: "Prioritize <=50 ms local-first velocity, keyboard-first shortcuts with inline <kbd> hints, <=35% chrome ceiling, and 0 ms transitions on >100/day actions."
+
+  mobile_consumer_capture:
+    code: "R3"
+    label: "Mass Consumer Mobile App / Fast Capture"
+    lindy_ratio: 0.45
+    convex_ratio: 0.55
+    active_weights:
+      luke-wroblewski: 0.35
+      don-norman: 0.25
+      susan-kare: 0.20
+      rauno-freiberg: 0.20
+    out_of_universe:
+      - "dieter-rams"
+      - "edward-tufte"
+      - "jef-raskin"
+      - "ben-shneiderman"
+      - "bret-victor"
+      - "karri-saarinen"
+      - "rasmus-andersson"
+      - "agentic-flow-architect"
+    arbitration_priority: "Prioritize one-handed thumb ergonomics (>=44x44 px hit targets, >=16 px inputs), perceptible signifiers, labeled road-sign icons, and compositor-only touch physics."
+
+  analytics_dense_telemetry:
+    code: "R4"
+    label: "Analytical, Financial & Dense Telemetry Dashboard"
+    lindy_ratio: 0.60
+    convex_ratio: 0.40
+    active_weights:
+      edward-tufte: 0.35
+      ben-shneiderman: 0.25
+      rasmus-andersson: 0.25
+      bret-victor: 0.15
+    out_of_universe:
+      - "dieter-rams"
+      - "don-norman"
+      - "jef-raskin"
+      - "susan-kare"
+      - "karri-saarinen"
+      - "luke-wroblewski"
+      - "rauno-freiberg"
+      - "agentic-flow-architect"
+    arbitration_priority: "Prioritize Lie Factor 0.95-1.05, high data-ink ratio, shared-scale small multiples, Overview->Zoom/Filter<=100 ms->Details, tabular-nums, and live parameter projections."
+
+  landing_onboarding_conversion:
+    code: "R5"
+    label: "Landing Page / Onboarding & Conversion Funnel"
+    lindy_ratio: 0.50
+    convex_ratio: 0.50
+    active_weights:
+      luke-wroblewski: 0.35
+      dieter-rams: 0.30
+      don-norman: 0.20
+      rasmus-andersson: 0.15
+    out_of_universe:
+      - "edward-tufte"
+      - "jef-raskin"
+      - "ben-shneiderman"
+      - "susan-kare"
+      - "bret-victor"
+      - "karri-saarinen"
+      - "rauno-freiberg"
+      - "agentic-flow-architect"
+    arbitration_priority: "Prioritize gradual engagement (<=14 form elements, single-column flow), structural subtraction and zero dark patterns, perceptible signifiers, and optical reading measure (45-75ch)."
