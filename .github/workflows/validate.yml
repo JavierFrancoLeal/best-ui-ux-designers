@@ -1,0 +1,31 @@
+name: Validate Repository
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install validation dependencies
+        run: python3 -m pip install --upgrade pip && pip install -r requirements-dev.txt
+
+      - name: Run deterministic repository validation suite
+        run: python3 validators/validate_repo.py
+
+      - name: Verify installer syntax and dry-run modes
+        run: |
+          bash -n adapters/install.sh
+          bash adapters/install.sh --target all --mode full --scope workspace --dest /tmp/ci-uiux-full --dry-run
+          bash adapters/install.sh --target all --mode director-only --scope workspace --dest /tmp/ci-uiux-director --dry-run
