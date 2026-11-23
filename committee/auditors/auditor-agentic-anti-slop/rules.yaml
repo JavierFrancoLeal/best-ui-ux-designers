@@ -56,12 +56,12 @@ rules:
     mandatory_remediation: "Strip decorative indigo-purple gradients, bg-clip-text figures, neon blurs, and unbacked sparkles; enforce 0 ms on Cmd+K / >100/day controls and remove hover font-weight shifts."
     primary_sources:
       - id: "src-slop-03"
-        title: "Signs of AI Design Empirical Scan (2026)"
-        author_or_org: "signs-of-ai-design community benchmark"
-        year: 2026
+        title: "The Proliferation and Problem of the Sparkles Icon & Generative UI Homogeneity"
+        author_or_org: "Kate Kaplan (Nielsen Norman Group)"
+        year: 2024
         source_type: "empirical_benchmark"
-        url_or_identifier: "Phase A Benchmark Archive (2026)"
-        extracted_invariant: "Default blue-purple gradients rose from ~10% (2020) to ~78% (2026) across indexed AI marketing sites, driving homogeneity and visual noise."
+        url_or_identifier: "https://www.nngroup.com/articles/ai-sparkles-icon-problem/"
+        extracted_invariant: "Unbacked AI sparkle icons and default purple/indigo gradient templates fail icon-comprehension benchmarks and create visual homogeneity across generative UIs."
 
   - id: "aud-slop-04"
     veto_id: "veto-central-dynamo"

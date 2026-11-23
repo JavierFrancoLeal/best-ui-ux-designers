@@ -261,7 +261,7 @@ def _find_brand_context(target: Path) -> list[str]:
             "DESIGN.md",
             "BRAND.md",
             "docs/BRAND.md",
-            "docs/TRASUNTO-VISUAL-PHILOSOPHY.md",
+            "docs/VISUAL-PHILOSOPHY.md",
             "docs/UI-DOCTRINE.md",
             "tailwind.config.js",
             "tailwind.config.ts",
@@ -276,43 +276,72 @@ def _find_brand_context(target: Path) -> list[str]:
     return sorted(set(markers))
 
 
+def _has_project_reduced_motion_guard(target: Path) -> bool:
+    """Check whether a global stylesheet in the target project already declares prefers-reduced-motion."""
+    for parent in [target.parent, *list(target.parents)[:4]]:
+        for candidate in (
+            "globals.css",
+            "global.css",
+            "app.css",
+            "index.css",
+            "styles.css",
+            "src/globals.css",
+            "src/index.css",
+            "src/app/globals.css",
+            "styles/globals.css",
+        ):
+            p = parent / candidate
+            if p.is_file():
+                try:
+                    if "prefers-reduced-motion" in p.read_text(encoding="utf-8", errors="ignore"):
+                        return True
+                except OSError:
+                    pass
+        if (parent / ".git").exists():
+            break
+    return False
+
+
 def _check_js_block(
     js_raw: str,
     base_line: int,
     rel_file: str,
     html_info: _HtmlScanner | None,
     findings: list[dict[str, Any]],
+    allow_node_syntax_check: bool = True,
 ) -> None:
     """Run deterministic static checks on a JS/script block."""
     js = _strip_js_comments_and_strings(js_raw)
 
-    # 1. Optional node --check syntax check
-    try:
-        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as tf:
-            tf.write(js_raw)
-            tmp_path = Path(tf.name)
-        proc = subprocess.run(
-            ["node", "--check", str(tmp_path)],
-            capture_output=True,
-            text=True,
-            timeout=5,
-        )
-        tmp_path.unlink(missing_ok=True)
-        if proc.returncode != 0:
-            err_line = (proc.stderr or proc.stdout).strip().splitlines()[:3]
-            findings.append({
-                "rule_id": "CPU-JS-SYNTAX",
-                "canonical_id": f"{SUITE_ID}:{MODULE_ID}:CPU-JS-SYNTAX",
-                "severity": "BLOCKER",
-                "category": "runtime_correctness",
-                "file": rel_file,
-                "line": base_line,
-                "evidence_tier": "TOOL_VERIFIED",
-                "message": "JavaScript syntax error detected by `node --check`.",
-                "snippet": " | ".join(err_line),
-            })
-    except (FileNotFoundError, subprocess.TimeoutExpired):
-        pass
+    # 1. Optional node --check syntax check (pure JS/HTML script blocks only; skip JSX/TS/TSX)
+    is_es_module = bool(re.search(r"(?:^|\n)\s*(?:import|export)\s", js))
+    if allow_node_syntax_check and not is_es_module:
+        try:
+            with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as tf:
+                tf.write(js_raw)
+                tmp_path = Path(tf.name)
+            proc = subprocess.run(
+                ["node", "--check", str(tmp_path)],
+                capture_output=True,
+                text=True,
+                timeout=5,
+            )
+            tmp_path.unlink(missing_ok=True)
+            if proc.returncode != 0:
+                err_line = (proc.stderr or proc.stdout).strip().splitlines()[:3]
+                findings.append({
+                    "rule_id": "CPU-JS-SYNTAX",
+                    "canonical_id": f"{SUITE_ID}:{MODULE_ID}:CPU-JS-SYNTAX",
+                    "severity": "BLOCKER",
+                    "category": "runtime_correctness",
+                    "file": rel_file,
+                    "line": base_line,
+                    "evidence_tier": "TOOL_VERIFIED",
+                    "message": "JavaScript syntax error detected by `node --check`.",
+                    "snippet": " | ".join(err_line),
+                })
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            pass
 
     # 2. Undefined function call detection (catches real ReferenceErrors like esc(...))
     declared: set[str] = set(JS_BUILTINS)
@@ -613,7 +642,7 @@ def _check_css_block(
     if "requestAnimationFrame" in full_text:
         has_motion = True
 
-    if has_motion and "prefers-reduced-motion" not in full_text:
+    if has_motion and "prefers-reduced-motion" not in full_text and not _has_project_reduced_motion_guard(Path(rel_file)):
         findings.append({
             "rule_id": "CPU-MOTION-REDUCED",
             "canonical_id": f"{SUITE_ID}:{MODULE_ID}:CPU-MOTION-REDUCED",
@@ -623,7 +652,7 @@ def _check_css_block(
             "line": base_line,
             "evidence_tier": "TOOL_VERIFIED",
             "message": "Animations/transitions or `requestAnimationFrame` detected with zero `@media (prefers-reduced-motion: reduce)` or JS reduced-motion guard.",
-            "snippet": "0 occurrences of `prefers-reduced-motion` across file.",
+            "snippet": "0 occurrences of `prefers-reduced-motion` across file or project global stylesheets.",
         })
 
 
@@ -738,7 +767,7 @@ def scan_file(path: Path) -> dict[str, Any]:
     elif suffix == ".css":
         _check_css_block(text, 1, rel_file, text, findings)
     elif suffix in (".js", ".jsx", ".ts", ".tsx"):
-        _check_js_block(text, 1, rel_file, None, findings)
+        _check_js_block(text, 1, rel_file, None, findings, allow_node_syntax_check=(suffix == ".js"))
         # Check inline className/style motion jank in JSX/TSX
         for idx, line in enumerate(lines, start=1):
             if "transition-all" in line:
@@ -847,18 +876,28 @@ def to_markdown(results: list[dict[str, Any]]) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Deterministic CPU pre-scanner for best-ui-ux-designers")
-    parser.add_argument("targets", nargs="+", help="One or more frontend files to scan")
+    parser.add_argument("targets", nargs="+", help="One or more frontend files or directories to scan")
     parser.add_argument("--format", choices=["json", "sarif", "markdown"], default="json")
     parser.add_argument("--fail-on-blocker", action="store_true", help="Exit 2 if any BLOCKER finding exists")
     args = parser.parse_args(argv)
 
+    supported_exts = {".html", ".htm", ".css", ".js", ".jsx", ".ts", ".tsx", ".vue", ".svelte"}
+    skip_dirs = {".git", "node_modules", ".next", "dist", "build", ".venv", "__pycache__", "coverage"}
+
     results: list[dict[str, Any]] = []
     for t in args.targets:
         p = Path(t)
-        if not p.is_file():
-            print(f"ERROR: Target file not found: {t}", file=sys.stderr)
+        if p.is_dir():
+            for child in sorted(p.rglob("*")):
+                if any(part in skip_dirs for part in child.parts):
+                    continue
+                if child.is_file() and child.suffix.lower() in supported_exts:
+                    results.append(scan_file(child))
+        elif p.is_file():
+            results.append(scan_file(p))
+        else:
+            print(f"ERROR: Target path not found: {t}", file=sys.stderr)
             return 1
-        results.append(scan_file(p))
 
     total_blockers = sum(r["counts"]["blocker"] for r in results)
     if args.format == "json":

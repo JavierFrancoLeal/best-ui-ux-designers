@@ -11,7 +11,7 @@ identity:
   skin_in_the_game_evidence:
     - artifact: "Linear (Product Development and Issue Tracking System, Co-founder and CEO)"
       year: 2019
-      verifiable_metric: "Surpassed $100M ARR across 40,000+ paying companies with 177% NRR, $2.5B valuation (Aug 2026), positive cashflow, and AI agents installed in 95% of paid workspaces"
+      verifiable_metric: "Surpassed $100M ARR across 40,000+ paying companies with 177% NRR, $2.5B valuation (Aug 2025), positive cashflow, and AI agents installed in 95% of paid workspaces"
       source_id: "src-07"
     - artifact: "Linear Local-First Sync Engine and Delta Sync Read Path"
       year: 2022
@@ -305,7 +305,7 @@ primary_sources:
   - id: "src-04"
     title: "Rebuilding Linear's delta sync read path"
     author_or_org: "Peter Travers (Linear Engineering)"
-    year: 2026
+    year: 2025
     source_type: "engineering_post"
     url_or_identifier: "https://linear.app/now/rebuilding-delta-sync-read-path"
     extracted_invariant: "Each client maintains a local database so daily mutations execute with zero network round-trips; permission-scoped delta catch-up over >20 TB of sync actions (~1M/day in largest workspaces) uses Turbopuffer inverted posting lists plus Postgres late enrichment to keep reconnect tail latency flat."
@@ -319,14 +319,14 @@ primary_sources:
   - id: "src-06"
     title: "Styling Linear for the future with StyleX"
     author_or_org: "Kenneth Skovhus (Linear Engineering)"
-    year: 2026
+    year: 2025
     source_type: "engineering_post"
     url_or_identifier: "https://linear.app/now/styling-linear-for-the-future-stylex"
     extracted_invariant: "Build-time atomic CSS with Oxlint-enforced tokens (colors, typography, shadows, animations, cursors, thin borders) and nested LCH ThemeProviders eliminates hundreds of runtime CSS injections (0 on navigation), cutting main-thread CPU work by 20-35% and boosting mid-tier rendering by ~30%."
   - id: "src-07"
     title: "Sharing Linear's growth with the people building it"
     author_or_org: "Karri Saarinen (Linear)"
-    year: 2026
+    year: 2025
     source_type: "engineering_post"
     url_or_identifier: "https://linear.app/now/sharing-growth-with-the-people-building-linear"
     extracted_invariant: "Craft-first engineering scaled Linear past $100M ARR, 40,000+ paying companies, 177% NRR, $2.5B valuation, and 95% workspace AI-agent adoption (50% of work created by agents) with positive cashflow."
@@ -918,10 +918,10 @@ export function KeyboardFirstTriageSurface({
 - **`src-01` (`linear.app/method/introduction`, 2020):** Codifies Linear's opinionated product-building principles—build for creators over managers, purpose-built workflows over generic configurability, automated `n`-week cycles, manageable backlogs, and eliminating administrative busy-work.
 - **`src-02` (`linear.app/now/how-we-redesigned-the-linear-ui`, Mar 28, 2024):** Documents the 6-week redesign by a 3-designer core team, migrating from `98` HSL variables to `3` LCH inputs (`base`, `accent`, `contrast`), perceptual lightness uniformity across surface elevations, contrast tuning (`30` vs. `100`), and Inter Display headings.
 - **`src-03` (`linear.app/now/a-design-reset`, Mar 27, 2024):** Establishes why visual product experience accrues holistic design debt requiring comprehensive resets every 2–3 years rather than disjointed module-by-module updates.
-- **`src-04` (`linear.app/now/rebuilding-delta-sync-read-path`, Aug 18, 2026):** Details Linear's local-first client database eliminating network round-trips on daily actions and its Turbopuffer + Postgres late-enrichment read path handling `> 20 TB` of sync actions (`~1M/day` in largest workspaces) with flat P95/P99 reconnect latency.
+- **`src-04` (`linear.app/now/rebuilding-delta-sync-read-path`, Aug 18, 2025):** Details Linear's local-first client database eliminating network round-trips on daily actions and its Turbopuffer + Postgres late-enrichment read path handling `> 20 TB` of sync actions (`~1M/day` in largest workspaces) with flat P95/P99 reconnect latency.
 - **`src-05` (`linear.app/now/invisible-details`, Sep 17, 2020):** Specifies Linear's 40-line `MouseSafeArea` CSS `clip-path` triangular safe zone preserving diagonal Euclidean paths (`1–2 s` saved across hundreds of daily interactions) and inline shortcut hints in contextual menus.
-- **`src-06` (`linear.app/now/styling-linear-for-the-future-stylex`, Aug 26, 2026):** Reports the `> 1,000`-PR migration from `styled-components` to StyleX (`Mar–Aug 2026`), `100+` dynamic LCH variables with nested `ThemeProvider` regeneration, `Oxlint` token enforcement (including thin borders, shadows, animations), `0` runtime navigation CSS injections, `20%–35%` main-thread CPU reduction, and `~30%` mid-tier render speedup.
-- **`src-07` (`linear.app/now/sharing-growth-with-the-people-building-linear`, Aug 26, 2026):** Verifies `$100M+` ARR, `40,000+` paying companies, `177%` NRR, `$2.5B` valuation, positive cashflow, `95%` workspace AI-agent installation, `50%` agent-created work share, and `7x` PR-attached issue growth in 2026.
+- **`src-06` (`linear.app/now/styling-linear-for-the-future-stylex`, Aug 26, 2025):** Reports the `> 1,000`-PR migration from `styled-components` to StyleX (`Mar–Aug 2025`), `100+` dynamic LCH variables with nested `ThemeProvider` regeneration, `Oxlint` token enforcement (including thin borders, shadows, animations), `0` runtime navigation CSS injections, `20%–35%` main-thread CPU reduction, and `~30%` mid-tier render speedup.
+- **`src-07` (`linear.app/now/sharing-growth-with-the-people-building-linear`, Aug 26, 2025):** Verifies `$100M+` ARR, `40,000+` paying companies, `177%` NRR, `$2.5B` valuation, positive cashflow, `95%` workspace AI-agent installation, `50%` agent-created work share, and `7x` PR-attached issue growth in 2025.
 - **`src-08` (Airbnb Design Medium, Aug 6, 2016):** Karri Saarinen's DLS architecture treatise explaining software's absence of physical constraints, self-contained components over arbitrary atomic combinations, 5 artboard categories, and `~50`-screen prototyping in hours.
 - **`src-09` (`karrisaarinen.com/posts/designing-coinbase/`, Jun 29, 2016):** Primary record of Coinbase's Merchant Tools (`43,000` merchants), multi-signature Vault UX, and `< 3`-month native iOS/Android rebuild (`4-star` ratings).
 - **`src-10` (`linear.app/now/design-for-the-ai-age`, Apr 7, 2025):** Formalizes why generic chat threads fail precision workflows and defines the deterministic UI "workbench" governing AI agent deployment and human approval.

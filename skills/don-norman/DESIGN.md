@@ -15,11 +15,11 @@ identity:
       source_id: "src-01"
     - artifact: "User Centered System Design (Chapter 3: Cognitive Engineering, Lawrence Erlbaum Associates)"
       year: 1986
-      verifiable_metric: "6,891 citations for edited volume and 3,704 for Chapter 3 in Google Scholar aggregator profile (Nov 2026); formalized Gulfs of Execution and Evaluation, Design Model, User's Model, and System Image."
+      verifiable_metric: "6,891 citations for edited volume and 3,704 for Chapter 3 in Google Scholar aggregator profile (Nov 2025); formalized Gulfs of Execution and Evaluation, Design Model, User's Model, and System Image."
       source_id: "src-03"
     - artifact: "Categorization of Action Slips (Psychological Review, Vol. 88, Issue 1, pp. 1-15)"
       year: 1981
-      verifiable_metric: "1,755 OpenAlex citations (2,906 in Google Scholar aggregator profile, Nov 2026); established empirical classification of capture, description-similarity, and mode slips governing UI error engineering."
+      verifiable_metric: "1,755 OpenAlex citations (2,906 in Google Scholar aggregator profile, Nov 2025); established empirical classification of capture, description-similarity, and mode slips governing UI error engineering."
       source_id: "src-04"
     - artifact: "Nielsen Norman Group (Co-Founder, 1998-present) & Apple ATG VP / User Experience Architect (1993-1997)"
       year: 1998

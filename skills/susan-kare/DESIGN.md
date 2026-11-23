@@ -11,7 +11,7 @@ identity:
   skin_in_the_game_evidence:
     - artifact: "Apple Macintosh 1984 1-bit iconography and Command key symbol (U+2318)"
       year: 1984
-      verifiable_metric: "16x16 Bowen-knot bitmap shipped continuously on Apple keyboards for 42+ years (1984-2026) and standardized in Unicode 1.1 (1993) as U+2318 PLACE OF INTEREST SIGN; original 1982-1983 icon sketchbooks acquired jointly by MoMA and SFMOMA (2015, Obj. 112.2015)"
+      verifiable_metric: "16x16 Bowen-knot bitmap shipped continuously on Apple keyboards for 42+ years (1984-2025) and standardized in Unicode 1.1 (1993) as U+2318 PLACE OF INTEREST SIGN; original 1982-1983 icon sketchbooks acquired jointly by MoMA and SFMOMA (2015, Obj. 112.2015)"
       source_id: "src-01"
     - artifact: "Apple Macintosh MacPaint 32x32 1-bit toolset (Lasso, Paint Bucket, Brush) and Trash/Document/Application icon system"
       year: 1984

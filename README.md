@@ -2,14 +2,33 @@
 
 [![Validate Repository](https://github.com/JavierFrancoLeal/best-ui-ux-designers/actions/workflows/validate.yml/badge.svg)](https://github.com/JavierFrancoLeal/best-ui-ux-designers/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Ecosystem Contract](https://img.shields.io/badge/ECOSYSTEM__CONTRACT-v1.1.0-black.svg)](suite.yaml)
+[![Ecosystem Contract](https://img.shields.io/badge/ECOSYSTEM__CONTRACT-v1.2.0-black.svg)](suite.yaml)
 
-A portable, CPU-first adversarial UI/UX judgment suite for `agentskills.io`-compatible coding agents (`Google Antigravity`, `DeepSeek Harness`, `Claude Code`, `OpenAI Codex / ChatGPT`, `Cursor`, and `Windsurf / Devin Desktop`).
+**Stop AI coding agents from shipping generic UI slop, broken focus states, non-compositor animation jank, and unguarded async mutations.**
 
-Built as **Suite #1 of 5** under `ECOSYSTEM_CONTRACT v1.1.0` (`suite_id: ui-ux`), `best-ui-ux-designers` combines:
-1. **Deterministic CPU Pre-Scanning First** (`tools/uiux_cpu_scanner.py`, stdlib Python, JSON + SARIF 2.1.0): catches undefined JS calls, unguarded async mutations, `prefers-reduced-motion` omissions, non-compositor animations, focus/ARIA/touch/font-size defects, and declared brand-token exemptions in `<0.2 s` with zero variance.
-2. **Compact Operational Panel Briefs** (`skills/*/BRIEF.md`, `<= 25 KB` active panel budget): 18× smaller than raw `DESIGN.md` references while preserving full primary-source bibliographies and TSX recipes on demand.
-3. **Anti-Dilution Adversarial Deliberation**: 12 orthogonal designers in a 50/50 *Barbell* roster, 4 recalibrated *Via Negativa* auditors, single-root-cause deduplication (`BLOCKER` | `MAJOR` | `MINOR`), and terminable `Verdict Envelope v1.1.0`.
+`best-ui-ux-designers` is a portable, CPU-first UI/UX pre-merge audit suite for `agentskills.io`-compatible coding agents (`Google Antigravity`, `DeepSeek Harness`, `Claude Code`, `OpenAI Codex / ChatGPT`, `Cursor`, and `Windsurf / Devin Desktop`):
+
+1. **Deterministic CPU Pre-Scanner First (`tools/uiux_cpu_scanner.py`, zero-dep Python 3.9+, JSON + SARIF 2.1.0):** Scans `.html`, `.css`, `.js`, `.jsx`, `.ts`, `.tsx`, `.vue`, and `.svelte` files in `<0.2 s` for undefined JS calls, unguarded async mutations (`POST`/`PUT`/`PATCH`/`DELETE` without double-submit lock or `try/catch`), `prefers-reduced-motion` omissions (checking both local files and project-wide `globals.css`), non-compositor animations (`transition: all`, `box-shadow`/`width`/`height`/`top`/`left`), missing `:focus-visible` rings, `<16px` mobile inputs, `<44px` touch targets, and unlabeled icon buttons.
+2. **4 *Via Negativa* Circuit-Breaker Checklists (`committee/auditors/*/rules.yaml`):** Constrains LLM review to falsifiable veto rules (`PASS` | `CONDITIONAL_BLOCK` | `HARD_VETO` with `file:line` evidence) grounded in human-factors laws (Cowan 4-chunk working memory limit, Hick-Hyman choice entropy, Baymard `<= 14` form-field ceiling, KLM-GOMS motor tax, WCAG 2.2 AA).
+3. **12 Compact Designer Briefs (`skills/*/BRIEF.md`, `<= 25 KB` active panel budget):** Loads 4–5 regime-matched design briefs (`~2 KB` each, 18× smaller than full `DESIGN.md` dossiers) so the agent gets concrete heuristics without blowing up the context window.
+
+---
+
+## 30-Second Quickstart
+
+```bash
+git clone https://github.com/JavierFrancoLeal/best-ui-ux-designers.git
+cd best-ui-ux-designers
+
+# 1. Run the zero-dependency CPU pre-scanner on any frontend file or directory
+python3 tools/uiux_cpu_scanner.py --format markdown path/to/your/src
+
+# 2. Or output SARIF 2.1.0 / fail CI on BLOCKER findings
+python3 tools/uiux_cpu_scanner.py --format sarif --fail-on-blocker path/to/your/src
+
+# 3. Install into your project workspace for Claude Code, Cursor, Antigravity, Codex, Windsurf, or DSH
+./adapters/install.sh --target all --mode director-only --scope workspace --dest /path/to/your-project
+```
 
 ---
 

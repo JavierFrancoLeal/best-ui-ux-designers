@@ -11,7 +11,7 @@ identity:
   skin_in_the_game_evidence:
     - artifact: "Vitsoe 606 Universal Shelving System"
       year: 1960
-      verifiable_metric: "66 years of continuous production (1960-2026) with backward component compatibility, direct delivery to >90 countries, MoMA permanent collection induction (2004), 2018 court ruling noting zero design elements causing unrest, and 2023 Italian Supreme Court of Cassation copyright recognition"
+      verifiable_metric: "66 years of continuous production (1960-2025) with backward component compatibility, direct delivery to >90 countries, MoMA permanent collection induction (2004), 2018 court ruling noting zero design elements causing unrest, and 2023 Italian Supreme Court of Cassation copyright recognition"
       source_id: "src-11"
     - artifact: "Braun ET 66 Pocket Calculator (with Dietrich Lubs)"
       year: 1987
@@ -341,7 +341,7 @@ primary_sources:
   - id: "src-10"
     title: "CSS Color Module Level 4 (oklch() Chroma Specification)"
     author_or_org: "W3C"
-    year: 2026
+    year: 2025
     source_type: "official_standard"
     url_or_identifier: "https://www.w3.org/TR/css-color-4/"
     extracted_invariant: "Defines perceptual OKLCH chroma C = sqrt(a^2 + b^2) where achromatic neutral tones sit at C = 0 (powerless hue) or C <= 0.02."

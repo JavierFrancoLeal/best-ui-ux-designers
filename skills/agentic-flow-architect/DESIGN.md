@@ -297,10 +297,10 @@ primary_sources:
     extracted_invariant: "Fusion cuts p50 server latency from 475 ms to 260 ms with 13,000-token editor context, >25% higher accuracy on difficult edits per line, >10x longer change stretches, and >1B edited chars/day."
   - id: "src-04"
     title: "Windsurf Editor Launch: AI Flows and Cascade"
-    author_or_org: "Codeium (Windsurf / Cognition)"
+    author_or_org: "Codeium (Windsurf)"
     year: 2024
     source_type: "engineering_post"
-    url_or_identifier: "https://devin.ai/blog/windsurf-launch"
+    url_or_identifier: "https://codeium.com/blog/windsurf-launch"
     extracted_invariant: "AI Flows merge repository knowledge (Riptide search at vendor-reported 3x accuracy vs. embeddings), tool execution, and real-time filtered human-action tracking with checkpointing onto a unified timeline so manual edits never require conversational re-explanation."
   - id: "src-05"
     title: "DirectGPT: A Direct Manipulation Interface to Interact with Large Language Models"
@@ -333,7 +333,7 @@ primary_sources:
   - id: "src-09"
     title: "Measuring AI Agent Autonomy in Practice"
     author_or_org: "Anthropic"
-    year: 2026
+    year: 2025
     source_type: "empirical_benchmark"
     url_or_identifier: "https://www.anthropic.com/research/measuring-agent-autonomy"
     extracted_invariant: "Across n=500,000 interactive sessions and 998,481 API tool calls, experienced users double full auto-approve (20% to >40%) while raising interrupts (5% to 9%), driven by missing context (32%) and hanging/slow runs (17%); 80% of tool calls run behind safeguards and 0.8% are irreversible."
@@ -354,7 +354,7 @@ primary_sources:
   - id: "src-12"
     title: "AI Commands, Dynamic Placeholders, Action Panel & AI Extensions Manual"
     author_or_org: "Raycast"
-    year: 2026
+    year: 2025
     source_type: "official_standard"
     url_or_identifier: "https://manual.raycast.com/ai/ai-commands"
     extracted_invariant: "Single-press AI Commands inject {selection}, {clipboard}, and {browser-tab} placeholders into Replace Selection with Highlight Editing Changes, while Cmd+K Action Panels and AI Extension permission cards expose Show Command with deterministic Enter/Cmd+Enter/Esc bindings."
@@ -396,7 +396,7 @@ primary_sources:
   - id: "src-18"
     title: "Claude Code Checkpointing Documentation"
     author_or_org: "Anthropic"
-    year: 2026
+    year: 2025
     source_type: "official_standard"
     url_or_identifier: "https://code.claude.com/docs/en/checkpointing"
     extracted_invariant: "Automatic per-prompt snapshots retain 100 recent checkpoints with Esc+Esc / /rewind multi-scope restore (code, conversation, both) while explicitly excluding shell-command mutations, background subagents, and symlinks."
@@ -970,20 +970,20 @@ Aggressive latency compression and friction removal carry three documented failu
 - **`src-01` (Sanger / Cursor, 2024)**: Vendor engineering benchmark establishing full-file speculative edits at `~1,000 tokens/s` (`~3,500 char/s`, `13x` over vanilla Llama-3-70b) and detailing the three mechanical reasons LLMs fail on line-numbered diffs.
 - **`src-02` (Anysphere Priompt, 2024)**: Open-source TypeScript/JSX priority context renderer (`<scope>`, `<first>`, `<isolate>`, `<br/>`), documenting the `~10K` scope bound and KV-cache prefix stability caveats.
 - **`src-03` (Cursor Team, 2025)**: Vendor engineering report documenting `260 ms` p50 server latency (from `475 ms`), `13,000`-token editor context, `>25%` higher difficult-edit accuracy per line, and `>1B` edited chars/day in Tab Fusion.
-- **`src-04` (Codeium Windsurf, 2024)**: Vendor launch engineering post formalizing AI Flows (Knowledge via 3x-accuracy Riptide search + Tools + real-time filtered Human Actions on one unified timeline), later unified into Devin Desktop (2026).
+- **`src-04` (Codeium Windsurf, 2024)**: Vendor launch engineering post formalizing AI Flows (Knowledge via 3x-accuracy Riptide search + Tools + real-time filtered Human Actions on one unified timeline), later unified into Devin Desktop (2025).
 - **`src-05` (Masson et al., CHI '24)**: Peer-reviewed controlled study (`N=12`, 288 evaluations) quantifying DirectGPT's `-50%` time, `-50%` prompt count, `-72%` prompt length, `+25%` success, and `+2.33/5` undo gains over ChatGPT.
 - **`src-06` (Gibbons, Mugunthan & Nielsen, NN/g 2023)**: Usability study (`N=8`) defining Accordion Editing and Apple Picking and prescribing compartmentalized inline editing and point-to-select controls.
 - **`src-07` (Zamfirescu-Pereira et al., CHI '23)**: Peer-reviewed empirical study (`N=10`) of systematic failure modes in blank-box end-user prompting (opportunistic edits, single-example over-generalization).
 - **`src-08` (Linear, 2025)**: Official platform standard specifying 6 AgentSession states, 5 typed AgentActivity payloads, `<=10 s` acknowledgment, non-human disclosure, immediate disengage, and `delegate != assignee` accountability.
-- **`src-09` (Anthropic, 2026)**: Empirical telemetry (`n=500,000` interactive sessions; `998,481` API tool calls) documenting experience-driven auto-approve growth (`20% -> >40%`), interrupt growth (`5% -> 9%`), interrupt causes (`32%` missing context, `17%` slow/hanging), `80%` safeguard coverage, and `0.8%` irreversible actions.
+- **`src-09` (Anthropic, 2025)**: Empirical telemetry (`n=500,000` interactive sessions; `998,481` API tool calls) documenting experience-driven auto-approve growth (`20% -> >40%`), interrupt growth (`5% -> 9%`), interrupt causes (`32%` missing context, `17%` slow/hanging), `80%` safeguard coverage, and `0.8%` irreversible actions.
 - **`src-10` (Bucinca et al., CSCW '21)**: Peer-reviewed experiment (`N=199`) showing simple XAI correlates with incorrect overreliance (`r=0.21`) while cognitive forcing functions halve High-NFC overreliance (`46% -> 24%`, `p=0.001`; Low-NFC `63% -> 54%`, `n.s.`).
 - **`src-11` (Mozannar et al., CHI '24)**: Peer-reviewed CUPS study (`N=21`, 3,137 segments) quantifying `22.4%` verification time, `11.9%` suggestion editing, `11.56%` prompt crafting, `4.20%` waiting, and `89.3%` rejection of suggestions during prompt crafting.
-- **`src-12` (Raycast Manual, 2026)**: Official product specification for `Cmd+K` Action Panels, `{selection}`/`{clipboard}`/`{browser-tab}` dynamic placeholders, `Replace Selection`, and AI Extension permission cards with `Show Command` and `Enter`/`Cmd+Enter`/`Esc`.
+- **`src-12` (Raycast Manual, 2025)**: Official product specification for `Cmd+K` Action Panels, `{selection}`/`{clipboard}`/`{browser-tab}` dynamic placeholders, `Replace Selection`, and AI Extension permission cards with `Show Command` and `Enter`/`Cmd+Enter`/`Esc`.
 - **`src-13` (Card, Moran & Newell, CACM 1980)**: Canonical peer-reviewed KLM operator constants (`K=0.20s/0.28s`, `P=1.10s`, `BB=0.20s`, `H=0.40s`, `M=1.35s`) enabling falsifiable motor-cognitive task timing models.
 - **`src-14` (Nielsen, 1993)**: Perceptual latency ceilings (`100 ms`, `1,000 ms`, `10,000 ms`) governing optimistic acknowledgment, flow continuity, and mandatory abort/progress indicators.
 - **`src-15` (Shneiderman, 2022)**: Foundational framework establishing independent high-automation and high-human-control axes, audit trails, and supervised autonomy (`ISBN 978-0-19-284529-0`).
 - **`src-16` (Lunnemark / Cursor, 2024)**: Vendor engineering post establishing hidden-window (`show: false`) gRPC-multiplexed Shadow Workspaces for independent background LSP validation with 15-minute idle teardown.
 - **`src-17` (Cursor Team, 2025)**: Vendor engineering post detailing online policy-gradient RL over `>400M` daily requests (`+0.75/-0.25` reward, `p > 0.25` display gate) cutting suggestion rate `21%` while raising accept rate `28%`.
-- **`src-18` (Anthropic, 2026)**: Official Claude Code Checkpointing documentation defining automatic per-prompt snapshots, 100-checkpoint retention, `Esc+Esc` / `/rewind` multi-scope recovery, and explicit exclusion of shell/subagent/symlink mutations.
+- **`src-18` (Anthropic, 2025)**: Official Claude Code Checkpointing documentation defining automatic per-prompt snapshots, 100-checkpoint retention, `Esc+Esc` / `/rewind` multi-scope recovery, and explicit exclusion of shell/subagent/symlink mutations.
 - **`src-19` (Raskin, 2000)**: Foundational cognitive-ergonomics text defining single locus of attention, habituation, mode errors, and quasimode safeguards (`ISBN 978-0-201-37937-2`).
 - **`src-20` (Linear, 2022)**: Vendor release engineering specification establishing the `50 ms` local-first Sync Engine interaction budget and `10x` initial load reduction.

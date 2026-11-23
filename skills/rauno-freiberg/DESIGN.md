@@ -11,11 +11,11 @@ identity:
   skin_in_the_game_evidence:
     - artifact: "Web Interface Guidelines (raunofreiberg/interfaces & vercel-labs/web-interface-guidelines)"
       year: 2023
-      verifiable_metric: "2,000+ GitHub stars on raunofreiberg/interfaces; expanded into vercel-labs/web-interface-guidelines (1,200+ repo stars) and vercel-labs/agent-skills wrapper tracked at 30,550-33,200 stars and 582,881 installs per Skillselion as of Aug 2026"
+      verifiable_metric: "2,000+ GitHub stars on raunofreiberg/interfaces; expanded into vercel-labs/web-interface-guidelines (1,200+ repo stars) and vercel-labs/agent-skills wrapper tracked at 30,550-33,200 stars and 582,881 installs per Skillselion as of Aug 2025"
       source_id: "src-02"
     - artifact: "cmdk Production Deployment & Command Menu Architecture (with Paco Coursey)"
       year: 2022
-      verifiable_metric: "Deployed for Vercel command menu and autocomplete by Rauno Freiberg (2020) and rewritten by Paco Coursey (2022); 13,200+ GitHub stars, 33.0M weekly npm downloads, and 4,129 npm dependents per JavaScripts.com as of Sept 25, 2026 (with npm API reads exceeding 41M weekly)"
+      verifiable_metric: "Deployed for Vercel command menu and autocomplete by Rauno Freiberg (2020) and rewritten by Paco Coursey (2022); 13,200+ GitHub stars, 33.0M weekly npm downloads, and 4,129 npm dependents per JavaScripts.com as of Sept 25, 2025 (with npm API reads exceeding 41M weekly)"
       source_id: "src-04"
     - artifact: "Invisible Details of Interaction Design & Devouring Details Interactive Reference"
       year: 2023
@@ -289,7 +289,7 @@ primary_sources:
   - id: "src-03"
     title: "Web Interface Guidelines (vercel-labs/web-interface-guidelines)"
     author_or_org: "Vercel Labs"
-    year: 2026
+    year: 2025
     source_type: "shipped_oss_repo"
     url_or_identifier: "https://github.com/vercel-labs/web-interface-guidelines"
     extracted_invariant: "Prohibit transition: all and layout/paint property animations (width, height, top, left); restrict animations to transform and opacity; enforce prefers-reduced-motion, interruptibility, >=24 px desktop / >=44 px mobile hit targets, :focus-visible rings, overscroll-behavior: contain, touch-action: manipulation, CSS > WAAPI > JS hierarchy, and 0 ms subsequent peer tooltips."
@@ -303,14 +303,14 @@ primary_sources:
   - id: "src-05"
     title: "Novelty"
     author_or_org: "Rauno Freiberg"
-    year: 2026
+    year: 2025
     source_type: "engineering_post"
     url_or_identifier: "https://rauno.me/craft/novelty"
     extracted_invariant: "Formalizes the inverse frequency-novelty curve (semantic satiation and cognitive novelty tax), the 90/10 familiarity-to-novelty ratio, and cookie-gated one-time intro transitions (COOKIE_ANIMATE_INTRO) so return loads execute in 0 ms."
   - id: "src-06"
     title: "emil-design-eng & Animation Performance Cheatsheet (Vercel/Linear Design Engineering School)"
     author_or_org: "Emil Kowalski"
-    year: 2026
+    year: 2025
     source_type: "shipped_oss_repo"
     url_or_identifier: "https://github.com/emilkowalski/skill/blob/main/skills/emil-design-eng/SKILL.md"
     extracted_invariant: "Codifies frequency tiers (0 ms for >100/day and keyboard actions, <300 ms general UI ceiling), interruptible CSS transitions/springs over keyframes, scale(0.95) entry floor and scale(0.97) active press, trigger-bound transform-origin, <=20 px dynamic blur ceiling (2-5 px crossfade), and @media (hover: hover) and (pointer: fine) touch isolation."
@@ -1058,10 +1058,10 @@ export function CaptureDrawerAfter({
 
 - **`src-01` (`rauno.me/craft/interaction-design`, 2023):** Primary source for interruptible gestures, momentum retention, mid-swipe vs. post-release destructive commits, high-frequency zero-motion command menus, Fitts's law radial/corner targets, and implicit intent inference.
 - **`src-02` (`github.com/raunofreiberg/interfaces`, 2023):** Primary checklist establishing `<=200 ms` duration, proportional scaling (`~0.96` press, no `0 -> 1` dialogs), zero theme-switch transitions, zero hover `font-weight` layout shifts, `tabular-nums`, `@media (hover: hover)`, zero dead list gaps, prediction cones, `mousedown` dropdown triggers, inline copy checkmarks, `>=16 px` mobile inputs, and direct DOM refs.
-- **`src-03` (`github.com/vercel-labs/web-interface-guidelines`, 2026):** Production Vercel Labs specification codifying the ban on `transition: all` and layout/paint animations, `prefers-reduced-motion` parity, `>=24 px` / `>=44 px` target sizing, `:focus-visible`, `overscroll-behavior: contain`, `touch-action: manipulation`, and peer tooltip zero-delay behavior.
+- **`src-03` (`github.com/vercel-labs/web-interface-guidelines`, 2025):** Production Vercel Labs specification codifying the ban on `transition: all` and layout/paint animations, `prefers-reduced-motion` parity, `>=24 px` / `>=44 px` target sizing, `:focus-visible`, `overscroll-behavior: contain`, `touch-action: manipulation`, and peer tooltip zero-delay behavior.
 - **`src-04` (`github.com/pacocoursey/cmdk`, 2022):** Production command-palette library deployed at Vercel by Rauno Freiberg (2020) and rewritten by Paco Coursey (2022), grounding zero-motion keyboard invocation and accessible combobox/dialog structure; its optional README `transition: height 100ms ease` snippet is treated as a narrow trade-off exception not permitted on general interactive surfaces.
-- **`src-05` (`rauno.me/craft/novelty`, 2026):** Grounds the inverse frequency-novelty relationship, 90/10 familiarity baseline, Arc Browser cognitive novelty tax analysis, and cookie-gated one-time intro transitions (`COOKIE_ANIMATE_INTRO`).
-- **`src-06` (`github.com/emilkowalski/skill/blob/main/skills/emil-design-eng/SKILL.md`, 2026):** Complements Freiberg's guidelines from the same Vercel/Linear Design Engineering school with explicit quantitative thresholds: `>100/day` `0 ms` rule, `scale(0.95)`/`scale(0.97)` bounds, `<=20 px` dynamic blur cap (empirical heuristic directionally supported by an independent 9-run modal trace averaging `2.7` slow frames `>25 ms` at `<=20 px` vs. `13.3` at `40 px`), and `@media (hover: hover) and (pointer: fine)` isolation.
+- **`src-05` (`rauno.me/craft/novelty`, 2025):** Grounds the inverse frequency-novelty relationship, 90/10 familiarity baseline, Arc Browser cognitive novelty tax analysis, and cookie-gated one-time intro transitions (`COOKIE_ANIMATE_INTRO`).
+- **`src-06` (`github.com/emilkowalski/skill/blob/main/skills/emil-design-eng/SKILL.md`, 2025):** Complements Freiberg's guidelines from the same Vercel/Linear Design Engineering school with explicit quantitative thresholds: `>100/day` `0 ms` rule, `scale(0.95)`/`scale(0.97)` bounds, `<=20 px` dynamic blur cap (empirical heuristic directionally supported by an independent 9-run modal trace averaging `2.7` slow frames `>25 ms` at `<=20 px` vs. `13.3` at `40 px`), and `@media (hover: hover) and (pointer: fine)` isolation.
 - **`src-07` (`github.com/emilkowalski/vaul`, 2023):** Production React drawer implementation grounding direct DOM ref `translate3d` drag writes (fixing style-recalc frame drops on inherited CSS variables above ~20 items), `VELOCITY_THRESHOLD`, `CLOSE_THRESHOLD = 0.25`, `SCROLL_LOCK_TIMEOUT = 500 ms`, upward boundary damping, multi-touch locking, and `visualViewport` keyboard repositioning.
 - **`src-08` (`react-aria.adobe.com/blog/creating-a-pointer-friendly-submenu-experience`, 2024):** Formalizes safe-triangle trajectory calculation via `atan2`, `15-degree` angular grace buffer, 2 consecutive invalid samples tolerance, `16 ms` throttling, and touch/pen exclusion.
 - **`src-09` (`rauno.me/craft/depth`, 2024):** Grounds z-axis blur sequencing, trigger-proximity choreography ordering, and restrained staggering strictly subordinate to layer affordance.

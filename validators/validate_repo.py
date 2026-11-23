@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Master deterministic CI validation suite for best-ui-ux-designers (v1.1.0)."""
+"""Master deterministic CI validation suite for best-ui-ux-designers (ECOSYSTEM_CONTRACT v1.2.0)."""
 
 from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -283,24 +284,55 @@ def check_central_dynamo_rule(repo_root: Path) -> tuple[bool, list[str]]:
     return len(errors) == 0, errors
 
 
+def _uiux_scanner_smoke(installed_scanner: Path, dest: Path) -> list[str]:
+    """Domain-specific synthetic buggy HTML smoke test for uiux_cpu_scanner.py."""
+    errs: list[str] = []
+    sample = dest / "sample_buggy.html"
+    sample.write_text(
+        '<!DOCTYPE html><html><head><style>.a{animation:x 1s infinite}@keyframes x{to{box-shadow:0 0 10px red}}</style></head>'
+        '<body><button id="x">✕</button><script>function f(){return missingFn(1);}</script></body></html>\n',
+        encoding="utf-8",
+    )
+    sproc = subprocess.run(
+        [sys.executable, str(installed_scanner), "--format", "json", str(sample)],
+        capture_output=True,
+        text=True,
+        timeout=15,
+    )
+    if sproc.returncode != 0:
+        return [f"UI-UX scanner smoke FAIL: exited {sproc.returncode}: {sproc.stderr}"]
+    sdata = json.loads(sproc.stdout)
+    rule_ids = {f["rule_id"] for f in sdata["results"][0]["findings"]}
+    for exp in ("CPU-JS-UNDEF", "CPU-MOTION-REDUCED", "CPU-A11Y-ICON-BTN"):
+        if exp not in rule_ids:
+            errs.append(f"UI-UX scanner smoke FAIL: missed expected defect '{exp}' (got {sorted(rule_ids)})")
+    return errs
+
+
 def main() -> int:
     repo_root = Path(__file__).resolve().parent.parent
     results: list[tuple[str, bool, list[str]]] = []
 
     ok, errs, suite_data = core.check_suite_manifest(repo_root)
-    results.append(("[Core] suite.yaml v1.1.0 manifest", ok, errs))
+    results.append((f"[Core v{core.CORE_VALIDATOR_VERSION}] suite.yaml manifest", ok, errs))
 
     ok, errs = core.check_director_contract(repo_root, suite_data)
-    results.append(("[Core] Director SKILL.md & Verdict Envelope v1.1.0", ok, errs))
+    results.append((f"[Core v{core.CORE_VALIDATOR_VERSION}] Director SKILL.md & Verdict Envelope", ok, errs))
 
     ok, errs = core.check_adapters_and_namespacing(repo_root, suite_data)
-    results.append(("[Core] Adapters, exact <suite_id>- prefix & limits", ok, errs))
+    results.append((f"[Core v{core.CORE_VALIDATOR_VERSION}] Adapters, exact <suite_id>- prefix & limits", ok, errs))
 
     ok, errs = core.check_portability_and_privacy(repo_root)
-    results.append(("[Core] Portability & privacy leak gate", ok, errs))
+    results.append((f"[Core v{core.CORE_VALIDATOR_VERSION}] Portability & privacy leak gate", ok, errs))
 
-    ok, errs = core.check_multisuite_coexistence(repo_root, suite_data)
-    results.append(("[Core] Live multi-suite coexistence + CPU scanner", ok, errs))
+    ok, errs = core.check_auditor_rules_and_citations(repo_root, suite_data)
+    results.append((f"[Core v{core.CORE_VALIDATOR_VERSION}] Clean-Room rules.yaml schema & citation hygiene", ok, errs))
+
+    ok, errs = core.check_anti_self_auditing_integrity(repo_root, suite_data)
+    results.append((f"[Core v{core.CORE_VALIDATOR_VERSION}] Anti-self-auditing & validator SHA-256 pin", ok, errs))
+
+    ok, errs = core.check_multisuite_coexistence(repo_root, suite_data, scanner_smoke_fn=_uiux_scanner_smoke)
+    results.append((f"[Core v{core.CORE_VALIDATOR_VERSION}] Live multi-suite coexistence + UI-UX CPU scanner", ok, errs))
 
     ok, errs, _ = check_skill_frontmatter.run_check(repo_root)
     results.append(("[UI-UX] 17 SKILL.md frontmatter & budget", ok, errs))
@@ -324,7 +356,7 @@ def main() -> int:
     results.append(("[UI-UX] Central Dynamo rule contract", ok, errs))
 
     print("=" * 72)
-    print("  best-ui-ux-designers v1.1.0 — Ecosystem + Domain Validation Suite")
+    print("  best-ui-ux-designers (ECOSYSTEM_CONTRACT v1.2.0) — Ecosystem + Domain Validation Suite")
     print("=" * 72)
     all_ok = True
     for label, passed, errs in results:

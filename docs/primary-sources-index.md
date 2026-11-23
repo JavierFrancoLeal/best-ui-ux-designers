@@ -10,17 +10,17 @@ This index consolidates and deduplicates all verifiable primary sources across `
 
 | # | Year | Type | Title & Author/Org | Identifier / URL | Referenced By |
 |---:|---:|---|---|---|---|
-| 1 | 2026 | `official_standard` | **AI Commands, Dynamic Placeholders, Action Panel & AI Extensions Manual** — Raycast | `https://manual.raycast.com/ai/ai-commands` | `agentic-flow-architect:src-12` |
-| 2 | 2026 | `official_standard` | **Claude Code Checkpointing Documentation** — Anthropic | `https://code.claude.com/docs/en/checkpointing` | `agentic-flow-architect:src-18` |
-| 3 | 2026 | `official_standard` | **CSS Color Module Level 4 (oklch() Chroma Specification)** — W3C | `https://www.w3.org/TR/css-color-4/` | `dieter-rams:src-10` |
-| 4 | 2026 | `shipped_oss_repo` | **emil-design-eng & Animation Performance Cheatsheet (Vercel/Linear Design Engineering School)** — Emil Kowalski | `https://github.com/emilkowalski/skill/blob/main/skills/emil-design-eng/SKILL.md` | `rauno-freiberg:src-06` |
-| 5 | 2026 | `official_standard` | **HTML Living Standard: Autofill (autocomplete), inputmode, and enterkeyhint** — WHATWG | `https://html.spec.whatwg.org/multipage/` | `luke-wroblewski:src-08` |
-| 6 | 2026 | `empirical_benchmark` | **Measuring AI Agent Autonomy in Practice** — Anthropic | `https://www.anthropic.com/research/measuring-agent-autonomy` | `agentic-flow-architect:src-09` |
-| 7 | 2026 | `engineering_post` | **Novelty** — Rauno Freiberg | `https://rauno.me/craft/novelty` | `rauno-freiberg:src-05` |
-| 8 | 2026 | `engineering_post` | **Rebuilding Linear's delta sync read path** — Peter Travers (Linear Engineering) | `https://linear.app/now/rebuilding-delta-sync-read-path` | `karri-saarinen:src-04` |
-| 9 | 2026 | `engineering_post` | **Sharing Linear's growth with the people building it** — Karri Saarinen (Linear) | `https://linear.app/now/sharing-growth-with-the-people-building-linear` | `karri-saarinen:src-07` |
-| 10 | 2026 | `engineering_post` | **Styling Linear for the future with StyleX** — Kenneth Skovhus (Linear Engineering) | `https://linear.app/now/styling-linear-for-the-future-stylex` | `karri-saarinen:src-06` |
-| 11 | 2026 | `shipped_oss_repo` | **Web Interface Guidelines (vercel-labs/web-interface-guidelines)** — Vercel Labs | `https://github.com/vercel-labs/web-interface-guidelines` | `rauno-freiberg:src-03` |
+| 1 | 2025 | `official_standard` | **AI Commands, Dynamic Placeholders, Action Panel & AI Extensions Manual** — Raycast | `https://manual.raycast.com/ai/ai-commands` | `agentic-flow-architect:src-12` |
+| 2 | 2025 | `official_standard` | **Claude Code Checkpointing Documentation** — Anthropic | `https://code.claude.com/docs/en/checkpointing` | `agentic-flow-architect:src-18` |
+| 3 | 2025 | `official_standard` | **CSS Color Module Level 4 (oklch() Chroma Specification)** — W3C | `https://www.w3.org/TR/css-color-4/` | `dieter-rams:src-10` |
+| 4 | 2025 | `shipped_oss_repo` | **emil-design-eng & Animation Performance Cheatsheet (Vercel/Linear Design Engineering School)** — Emil Kowalski | `https://github.com/emilkowalski/skill/blob/main/skills/emil-design-eng/SKILL.md` | `rauno-freiberg:src-06` |
+| 5 | 2025 | `official_standard` | **HTML Living Standard: Autofill (autocomplete), inputmode, and enterkeyhint** — WHATWG | `https://html.spec.whatwg.org/multipage/` | `luke-wroblewski:src-08` |
+| 6 | 2025 | `empirical_benchmark` | **Measuring AI Agent Autonomy in Practice** — Anthropic | `https://www.anthropic.com/research/measuring-agent-autonomy` | `agentic-flow-architect:src-09` |
+| 7 | 2025 | `engineering_post` | **Novelty** — Rauno Freiberg | `https://rauno.me/craft/novelty` | `rauno-freiberg:src-05` |
+| 8 | 2025 | `engineering_post` | **Rebuilding Linear's delta sync read path** — Peter Travers (Linear Engineering) | `https://linear.app/now/rebuilding-delta-sync-read-path` | `karri-saarinen:src-04` |
+| 9 | 2025 | `engineering_post` | **Sharing Linear's growth with the people building it** — Karri Saarinen (Linear) | `https://linear.app/now/sharing-growth-with-the-people-building-linear` | `karri-saarinen:src-07` |
+| 10 | 2025 | `engineering_post` | **Styling Linear for the future with StyleX** — Kenneth Skovhus (Linear Engineering) | `https://linear.app/now/styling-linear-for-the-future-stylex` | `karri-saarinen:src-06` |
+| 11 | 2025 | `shipped_oss_repo` | **Web Interface Guidelines (vercel-labs/web-interface-guidelines)** — Vercel Labs | `https://github.com/vercel-labs/web-interface-guidelines` | `rauno-freiberg:src-03` |
 | 12 | 2025 | `official_standard` | **Agent Interaction Guidelines (AIG) & Developing the Agent Interaction** — Linear | `https://linear.app/developers/aig` | `agentic-flow-architect:src-08` |
 | 13 | 2025 | `empirical_benchmark` | **Cart Abandonment Rate Statistics & Checkout Usability Benchmark** — Baymard Institute | `https://baymard.com/blog/cart-abandonment-rate` | `luke-wroblewski:src-05` |
 | 14 | 2025 | `engineering_post` | **Design for the AI age** — Karri Saarinen (Linear) | `https://linear.app/now/design-for-the-ai-age` | `karri-saarinen:src-10` |
@@ -47,7 +47,7 @@ This index consolidates and deduplicates all verifiable primary sources across `
 | 35 | 2024 | `empirical_benchmark` | **Usability Testing of Inline Form Validation: 31% Don't Have It, 4% Get It Wrong** — Baymard Institute | `https://baymard.com/research-articles/inline-form-validation` | `luke-wroblewski:src-17` |
 | 36 | 2024 | `peer_reviewed_paper` | **Validating AI-Generated Code with Live Programming** — Kasra Ferdowsi, Ruanqianqian Huang, Michael B. James, Nadia Polikarpova, and Sorin Lerner (ACM CHI) | `https://doi.org/10.1145/3613904.3642495` | `bret-victor:src-08` |
 | 37 | 2024 | `official_standard` | **Vitsoe Historical Archive and 606 Universal Shelving System Production Record** — Vitsoe Ltd | `https://www.vitsoe.com/us/about/history` | `dieter-rams:src-11` |
-| 38 | 2024 | `engineering_post` | **Windsurf Editor Launch: AI Flows and Cascade** — Codeium (Windsurf / Cognition) | `https://devin.ai/blog/windsurf-launch` | `agentic-flow-architect:src-04` |
+| 38 | 2024 | `engineering_post` | **Windsurf Editor Launch: AI Flows and Cascade** — Codeium (Windsurf) | `https://codeium.com/blog/windsurf-launch` | `agentic-flow-architect:src-04` |
 | 39 | 2023 | `empirical_benchmark` | **Accordion Editing and Apple Picking: Early Generative-AI User Behaviors** — Sarah Gibbons, Tarun Mugunthan, Jakob Nielsen (Nielsen Norman Group) | `https://www.nngroup.com/articles/accordion-editing-apple-picking/` | `agentic-flow-architect:src-06` |
 | 40 | 2023 | `empirical_benchmark` | **Businesses Using Stripe's Newest Checkout Optimizations Saw 10.5% More Revenue** — Stripe | `https://stripe.com/newsroom/news/payments-revenue-uplift` | `luke-wroblewski:src-11` |
 | 41 | 2023 | `empirical_benchmark` | **Error-Message Guidelines** — Tim Neusesser & Evan Sunwall, Nielsen Norman Group | `https://www.nngroup.com/articles/error-message-guidelines/` | `don-norman:src-09` |

@@ -58,7 +58,7 @@ rules:
       - id: "src-cog-03"
         title: "Checkout Usability & Cart Abandonment Rate Statistics (50-Study Meta-Benchmark)"
         author_or_org: "Baymard Institute"
-        year: 2026
+        year: 2025
         source_type: "empirical_benchmark"
         url_or_identifier: "https://baymard.com/lists/cart-abandonment-rate"
         extracted_invariant: "70.22% average abandonment; reducing checkout elements from 23.48 (US mean) to 12-14 drives up to +35.26% conversion lift."

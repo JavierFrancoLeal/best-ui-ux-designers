@@ -324,7 +324,7 @@ primary_sources:
   - id: "src-08"
     title: "HTML Living Standard: Autofill (autocomplete), inputmode, and enterkeyhint"
     author_or_org: "WHATWG"
-    year: 2026
+    year: 2025
     source_type: "official_standard"
     url_or_identifier: "https://html.spec.whatwg.org/multipage/"
     extracted_invariant: "Normative specifications for inputmode tokens (numeric, decimal, tel, email, url, search), enterkeyhint tokens (next, done, go, send, search), and autocomplete autofill tokens."
@@ -1281,7 +1281,7 @@ export function QuickBookingAfter() {
 - **`src-03`**: Luke Wroblewski / Etre, "Inline Validation in Web Forms" (*A List Apart*, Sept 1, 2009, `https://alistapart.com/article/inline-validation-in-web-forms/`) — n=22 trial demonstrating +22% success, -22% errors, +31% satisfaction, -42% completion time, -47% eye fixations, and 7–10s speedup for `onBlur` over premature validation.
 - **`src-04`**: Luke Wroblewski, "Sign Up Forms Must Die" (*A List Apart*, May 5, 2008, `https://alistapart.com/article/signupforms/`) — formal definition of gradual engagement (Geni 5M profiles in 5 months; critique of multi-page slider forms as non-gradual).
 - **`src-05`**: Baymard Institute, "Cart Abandonment Rate Statistics & Checkout Usability Benchmark" (2006–2025 aggregate, `https://baymard.com/blog/cart-abandonment-rate`) — 70.22% average abandonment (50 studies), 23.48 default US elements vs 12–14 ideal (7–8 fields), 18% forced-account and 17% complexity abandonment, +35.26% conversion lift potential.
-- **`src-06`**: Speero / CXL Institute, "Form Field Usability: Single vs. Multi-Column Forms" (2016, updated 2026, `https://speero.com/post/form-field-usability-should-you-use-single-or-multi-column-forms-original-research`) — n=702 controlled desktop test showing 102.338s single-column vs 117.791s multi-column (-15.453s / -13%, p=0.00412; 95% CI ~5–26s).
+- **`src-06`**: Speero / CXL Institute, "Form Field Usability: Single vs. Multi-Column Forms" (2016, updated 2025, `https://speero.com/post/form-field-usability-should-you-use-single-or-multi-column-forms-original-research`) — n=702 controlled desktop test showing 102.338s single-column vs 117.791s multi-column (-15.453s / -13%, p=0.00412; 95% CI ~5–26s).
 - **`src-07`**: Luke Wroblewski, "Dropdowns Should be the UI of Last Resort" (July 17, 2015, `https://www.lukew.com/ff/1950/dropdowns-should-be-the-ui-of-last-resort`) — 4-tap `<select>` penalty vs single-tap segmented controls, switches, steppers, and unified date pickers.
 - **`src-08`**: WHATWG, *HTML Living Standard — Multipage Edition* (`https://html.spec.whatwg.org/multipage/`) — normative specifications for `inputmode`, `enterkeyhint`, and `autocomplete`.
 - **`src-09`**: Steven Hoober, "How Do Users Really Hold Mobile Devices?" (*UXmatters*, Feb 18, 2013, `https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php`) — n=1,333 field observations (780 touching: 49% one-handed, 36% cradled, 15% two-handed; ~75% single-thumb).
