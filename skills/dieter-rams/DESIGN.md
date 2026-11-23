@@ -11,7 +11,7 @@ identity:
   skin_in_the_game_evidence:
     - artifact: "Vitsoe 606 Universal Shelving System"
       year: 1960
-      verifiable_metric: "66 years of continuous production (1960-2025) with backward component compatibility, direct delivery to >90 countries, MoMA permanent collection induction (2004), 2018 court ruling noting zero design elements causing unrest, and 2023 Italian Supreme Court of Cassation copyright recognition"
+      verifiable_metric: "65 years of continuous production (1960-2025) with backward component compatibility, direct delivery to >90 countries, MoMA permanent collection induction (2004), 2018 court ruling noting zero design elements causing unrest, and 2023 Italian Supreme Court of Cassation copyright recognition"
       source_id: "src-11"
     - artifact: "Braun ET 66 Pocket Calculator (with Dietrich Lubs)"
       year: 1987
