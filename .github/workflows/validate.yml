@@ -21,7 +21,7 @@ jobs:
       - name: Install validation dependencies
         run: python3 -m pip install --upgrade pip && pip install -r requirements-dev.txt
 
-      - name: Run Ecosystem v1.1.0 + UI/UX deterministic validation & coexistence suite
+      - name: Run Ecosystem v1.2.0 + UI/UX deterministic validation & coexistence suite
         run: python3 validators/validate_repo.py
 
       - name: Verify installer syntax and dry-run modes
