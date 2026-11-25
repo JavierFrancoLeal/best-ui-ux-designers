@@ -875,42 +875,127 @@ def to_markdown(results: list[dict[str, Any]]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Deterministic CPU pre-scanner for best-ui-ux-designers")
-    parser.add_argument("targets", nargs="+", help="One or more frontend files or directories to scan")
+    import time
+
+    parser = argparse.ArgumentParser(description="Deterministic CPU pre-scanner for best-ui-ux-designers (ECOSYSTEM_CONTRACT v1.3.0)")
+    parser.add_argument("targets", nargs="*", help="One or more frontend files or directories to scan")
+    parser.add_argument("--target", "--root", dest="target_opt", default=None, help="Target file or repository root to scan")
     parser.add_argument("--format", choices=["json", "sarif", "markdown"], default="json")
-    parser.add_argument("--fail-on-blocker", action="store_true", help="Exit 2 if any BLOCKER finding exists")
+    parser.add_argument("--json-out", "--json-output", dest="json_out", type=Path, default=None, help="Write JSON report to path")
+    parser.add_argument("--sarif-out", "--sarif-output", dest="sarif_out", type=Path, default=None, help="Write SARIF 2.1.0 report to path")
+    parser.add_argument("--fail-on-blocker", action="store_true", help="Deprecated no-op alias (fail-closed is default in v1.3.0)")
+    parser.add_argument("--no-fail-on-blocker", action="store_true", help="Advisory mode: exit 0 even when BLOCKER/MAJOR findings exist")
     args = parser.parse_args(argv)
+
+    raw_targets: list[str] = list(args.targets)
+    if args.target_opt:
+        raw_targets.append(args.target_opt)
+    if not raw_targets:
+        raw_targets = ["."]
 
     supported_exts = {".html", ".htm", ".css", ".js", ".jsx", ".ts", ".tsx", ".vue", ".svelte"}
     skip_dirs = {".git", "node_modules", ".next", "dist", "build", ".venv", "__pycache__", "coverage"}
+    max_file_bytes = 2 * 1024 * 1024
+    files_skipped: dict[str, Any] = {
+        "total": 0,
+        "oversized_count": 0,
+        "oversized_sample": [],
+        "binary_or_decode_count": 0,
+        "binary_or_decode_sample": [],
+        "os_error_count": 0,
+        "os_error_sample": [],
+        "python_syntax_error_count": 0,
+        "python_syntax_error_sample": [],
+    }
 
+    def _record_skip(kind: str, rel: str) -> None:
+        files_skipped["total"] += 1
+        files_skipped[f"{kind}_count"] += 1
+        if len(files_skipped[f"{kind}_sample"]) < 20:
+            files_skipped[f"{kind}_sample"].append(rel)
+
+    t0 = time.perf_counter()
     results: list[dict[str, Any]] = []
-    for t in args.targets:
+    for t in raw_targets:
         p = Path(t)
         if p.is_dir():
             for child in sorted(p.rglob("*")):
                 if any(part in skip_dirs for part in child.parts):
                     continue
                 if child.is_file() and child.suffix.lower() in supported_exts:
-                    results.append(scan_file(child))
+                    rel = child.relative_to(p).as_posix()
+                    try:
+                        if child.stat().st_size > max_file_bytes:
+                            _record_skip("oversized", rel)
+                            continue
+                        results.append(scan_file(child))
+                    except UnicodeDecodeError:
+                        _record_skip("binary_or_decode", rel)
+                    except OSError:
+                        _record_skip("os_error", rel)
         elif p.is_file():
-            results.append(scan_file(p))
+            try:
+                if p.stat().st_size > max_file_bytes:
+                    _record_skip("oversized", p.name)
+                else:
+                    results.append(scan_file(p))
+            except UnicodeDecodeError:
+                _record_skip("binary_or_decode", p.name)
+            except OSError:
+                _record_skip("os_error", p.name)
         else:
-            print(f"ERROR: Target path not found: {t}", file=sys.stderr)
-            return 1
+            print(json.dumps({"error": f"Target path not found: {t}", "exit_code": 3}), file=sys.stderr)
+            return 3
 
-    total_blockers = sum(r["counts"]["blocker"] for r in results)
-    if args.format == "json":
-        payload = {"scanner_version": SCANNER_VERSION, "total_blockers": total_blockers, "results": results}
-        print(json.dumps(payload, indent=2, ensure_ascii=False))
-    elif args.format == "sarif":
-        print(json.dumps(to_sarif(results), indent=2, ensure_ascii=False))
-    else:
-        print(to_markdown(results))
+    counts = {
+        "blocker": sum(r["counts"]["blocker"] for r in results),
+        "major": sum(r["counts"]["major"] for r in results),
+        "minor": sum(r["counts"]["minor"] for r in results),
+    }
+    flat_findings: list[dict[str, Any]] = []
+    for r in results:
+        for f in r["findings"]:
+            entry = dict(f)
+            entry.setdefault("file", r["file"])
+            flat_findings.append(entry)
 
-    if args.fail_on_blocker and total_blockers > 0:
-        return 2
-    return 0
+    raw_exit = 2 if counts["blocker"] > 0 else (1 if counts["major"] > 0 else 0)
+    exit_code = 0 if args.no_fail_on_blocker else raw_exit
+    duration_ms = round((time.perf_counter() - t0) * 1000.0, 2)
+
+    json_payload = {
+        "schema_version": "1.3.0",
+        "suite_id": "ui-ux",
+        "scanner": "uiux_cpu_scanner",
+        "scanner_version": SCANNER_VERSION,
+        "evidence_tier": "TOOL_VERIFIED",
+        "exit_code": exit_code,
+        "duration_ms": duration_ms,
+        "files_scanned": len(results),
+        "files_skipped": files_skipped,
+        "counts": counts,
+        "findings": flat_findings,
+        "total_blockers": counts["blocker"],
+        "results": results,
+    }
+    sarif_payload = to_sarif(results)
+
+    if args.json_out:
+        args.json_out.parent.mkdir(parents=True, exist_ok=True)
+        args.json_out.write_text(json.dumps(json_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if args.sarif_out:
+        args.sarif_out.parent.mkdir(parents=True, exist_ok=True)
+        args.sarif_out.write_text(json.dumps(sarif_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    if not args.json_out and not args.sarif_out:
+        if args.format == "json":
+            print(json.dumps(json_payload, indent=2, ensure_ascii=False))
+        elif args.format == "sarif":
+            print(json.dumps(sarif_payload, indent=2, ensure_ascii=False))
+        else:
+            print(to_markdown(results))
+
+    return exit_code
 
 
 if __name__ == "__main__":

@@ -299,10 +299,13 @@ def _uiux_scanner_smoke(installed_scanner: Path, dest: Path) -> list[str]:
         text=True,
         timeout=15,
     )
-    if sproc.returncode != 0:
-        return [f"UI-UX scanner smoke FAIL: exited {sproc.returncode}: {sproc.stderr}"]
+    if sproc.returncode != 2:
+        return [f"UI-UX scanner smoke FAIL: expected fail-closed exit 2 on BLOCKER, got {sproc.returncode}: {sproc.stderr}"]
     sdata = json.loads(sproc.stdout)
-    rule_ids = {f["rule_id"] for f in sdata["results"][0]["findings"]}
+    rule_ids = {f["rule_id"] for f in sdata.get("findings", [])}
+    legacy_ids = {f["rule_id"] for f in sdata["results"][0]["findings"]}
+    if rule_ids != legacy_ids:
+        errs.append(f"UI-UX scanner smoke FAIL: top-level findings {sorted(rule_ids)} != legacy results {sorted(legacy_ids)}")
     for exp in ("CPU-JS-UNDEF", "CPU-MOTION-REDUCED", "CPU-A11Y-ICON-BTN"):
         if exp not in rule_ids:
             errs.append(f"UI-UX scanner smoke FAIL: missed expected defect '{exp}' (got {sorted(rule_ids)})")
